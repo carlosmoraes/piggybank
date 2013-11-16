@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (strong) NSMutableArray *totalBudget;
 
 @end
 
@@ -32,11 +31,11 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // Create a new managed object
-    NSManagedObject *addBudget = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
+    NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
     
-    double amountDouble = [self.valueTextField.text doubleValue];
-    [addBudget setValue:[NSNumber numberWithDouble:amountDouble] forKey:@"amount"];
-    [addBudget setValue:self.descriptionTextField.text forKey:@"desc"];
+    double doubleValue = [self.valueTextField.text doubleValue];
+    [newCredit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit setValue:self.descriptionTextField.text forKey:@"desc"];
     
     NSError *error = nil;
     // Save the object to persistent store

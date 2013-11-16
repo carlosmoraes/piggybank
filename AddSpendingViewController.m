@@ -30,11 +30,11 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // Create a new managed object
-    NSManagedObject *addBudget = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    NSManagedObject *newDebit = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
     
-    double amountDouble = [self.valueTextField.text doubleValue];
-    [addBudget setValue:[NSNumber numberWithDouble:amountDouble] forKey:@"amount"];
-    [addBudget setValue:self.descriptionTextField.text forKey:@"desc"];
+    double doubleValue = [self.valueTextField.text doubleValue];
+    [newDebit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newDebit setValue:self.descriptionTextField.text forKey:@"desc"];
     
     NSError *error = nil;
     // Save the object to persistent store
