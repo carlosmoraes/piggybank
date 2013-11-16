@@ -77,22 +77,24 @@
     fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
     self.credits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     totalCredits = [self.credits valueForKeyPath:@"@sum.amount"];
-    self.creditLabel.text = [NSString stringWithFormat:@"%@", totalCredits];
+    double totalCreditsDouble = [totalCredits doubleValue];
+    self.creditLabel.text = [NSString stringWithFormat:@"%1.2f", totalCreditsDouble];
     
     fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
     self.debits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     totalDebits = [self.debits valueForKeyPath:@"@sum.amount"];
-    self.debitLabel.text = [NSString stringWithFormat:@"%@", totalDebits];
+    double totalDebitsDouble = [totalDebits doubleValue];
+    self.debitLabel.text = [NSString stringWithFormat:@"%1.2f", totalDebitsDouble];
     
     balance = [NSNumber numberWithFloat:([totalCredits floatValue] - [totalDebits floatValue])];
-    self.balanceLabel.text = [NSString stringWithFormat:@"%@", balance];
+    double balanceDouble = [balance doubleValue];
+    self.balanceLabel.text = [NSString stringWithFormat:@"%1.2f", balanceDouble];
     
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
