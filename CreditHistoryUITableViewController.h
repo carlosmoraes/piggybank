@@ -1,5 +1,5 @@
 //
-//  AddSpendingViewController.h
+//  CreditHistoryUITableViewController.h
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddSpendingViewController : UIViewController
+@interface CreditHistoryUITableViewController : UITableViewController
 
 @end

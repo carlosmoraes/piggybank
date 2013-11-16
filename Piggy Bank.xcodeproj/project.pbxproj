@@ -24,9 +24,9 @@
 		4B205743183628FE00D69588 /* Piggy_BankTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B205742183628FE00D69588 /* Piggy_BankTests.m */; };
 		4B20574D18362AEC00D69588 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B20574C18362AEC00D69588 /* MainStoryboard.storyboard */; };
 		4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20574F1836325A00D69588 /* PiggyBankViewController.m */; };
-		4B20575618364CF000D69588 /* AddBudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20575518364CF000D69588 /* AddBudgetViewController.m */; };
-		4B5F747A1837A1BC0058844C /* AddSpendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74791837A1BC0058844C /* AddSpendingViewController.m */; };
-		4B5F747D1837BDDC0058844C /* DepositHistoryUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F747C1837BDDC0058844C /* DepositHistoryUITableViewController.m */; };
+		4B20575618364CF000D69588 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20575518364CF000D69588 /* CreditViewController.m */; };
+		4B5F747A1837A1BC0058844C /* DebitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74791837A1BC0058844C /* DebitViewController.m */; };
+		4B5F747D1837BDDC0058844C /* CreditHistoryUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F747C1837BDDC0058844C /* CreditHistoryUITableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +61,12 @@
 		4B20574C18362AEC00D69588 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4B20574E1836325A00D69588 /* PiggyBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiggyBankViewController.h; sourceTree = "<group>"; };
 		4B20574F1836325A00D69588 /* PiggyBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiggyBankViewController.m; sourceTree = "<group>"; };
-		4B20575418364CF000D69588 /* AddBudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBudgetViewController.h; sourceTree = "<group>"; };
-		4B20575518364CF000D69588 /* AddBudgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBudgetViewController.m; sourceTree = "<group>"; };
-		4B5F74781837A1BC0058844C /* AddSpendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSpendingViewController.h; sourceTree = "<group>"; };
-		4B5F74791837A1BC0058844C /* AddSpendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSpendingViewController.m; sourceTree = "<group>"; };
-		4B5F747B1837BDDC0058844C /* DepositHistoryUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepositHistoryUITableViewController.h; sourceTree = "<group>"; };
-		4B5F747C1837BDDC0058844C /* DepositHistoryUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepositHistoryUITableViewController.m; sourceTree = "<group>"; };
+		4B20575418364CF000D69588 /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		4B20575518364CF000D69588 /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		4B5F74781837A1BC0058844C /* DebitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebitViewController.h; sourceTree = "<group>"; };
+		4B5F74791837A1BC0058844C /* DebitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebitViewController.m; sourceTree = "<group>"; };
+		4B5F747B1837BDDC0058844C /* CreditHistoryUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditHistoryUITableViewController.h; sourceTree = "<group>"; };
+		4B5F747C1837BDDC0058844C /* CreditHistoryUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditHistoryUITableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,15 +98,15 @@
 		4B20570B183628FE00D69588 = {
 			isa = PBXGroup;
 			children = (
-				4B5F747B1837BDDC0058844C /* DepositHistoryUITableViewController.h */,
-				4B5F747C1837BDDC0058844C /* DepositHistoryUITableViewController.m */,
-				4B20575418364CF000D69588 /* AddBudgetViewController.h */,
-				4B20575518364CF000D69588 /* AddBudgetViewController.m */,
+				4B5F747B1837BDDC0058844C /* CreditHistoryUITableViewController.h */,
+				4B5F747C1837BDDC0058844C /* CreditHistoryUITableViewController.m */,
+				4B20575418364CF000D69588 /* CreditViewController.h */,
+				4B20575518364CF000D69588 /* CreditViewController.m */,
 				4B20574E1836325A00D69588 /* PiggyBankViewController.h */,
 				4B20574F1836325A00D69588 /* PiggyBankViewController.m */,
 				4B20574C18362AEC00D69588 /* MainStoryboard.storyboard */,
-				4B5F74781837A1BC0058844C /* AddSpendingViewController.h */,
-				4B5F74791837A1BC0058844C /* AddSpendingViewController.m */,
+				4B5F74781837A1BC0058844C /* DebitViewController.h */,
+				4B5F74791837A1BC0058844C /* DebitViewController.m */,
 				4B20571F183628FE00D69588 /* Piggy Bank */,
 				4B20573C183628FE00D69588 /* Piggy BankTests */,
 				4B205716183628FE00D69588 /* Frameworks */,
@@ -272,13 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5F747A1837A1BC0058844C /* AddSpendingViewController.m in Sources */,
-				4B5F747D1837BDDC0058844C /* DepositHistoryUITableViewController.m in Sources */,
+				4B5F747A1837A1BC0058844C /* DebitViewController.m in Sources */,
+				4B5F747D1837BDDC0058844C /* CreditHistoryUITableViewController.m in Sources */,
 				4B20572A183628FE00D69588 /* AppDelegate.m in Sources */,
 				4B205726183628FE00D69588 /* main.m in Sources */,
 				4B20572D183628FE00D69588 /* Piggy_Bank.xcdatamodeld in Sources */,
 				4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */,
-				4B20575618364CF000D69588 /* AddBudgetViewController.m in Sources */,
+				4B20575618364CF000D69588 /* CreditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

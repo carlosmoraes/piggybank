@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="763" y="13"/>
         </scene>
-        <!--Add Budget View Controller - Credit-->
+        <!--Credit View Controller - Credit-->
         <scene sceneID="N4u-SD-nyL">
             <objects>
-                <viewController id="7x8-mP-xCf" customClass="AddBudgetViewController" sceneMemberID="viewController">
+                <viewController id="7x8-mP-xCf" customClass="CreditViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wuC-3B-Uux"/>
                         <viewControllerLayoutGuide type="bottom" id="cYy-JB-yUh"/>
@@ -175,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="1304" y="-305"/>
         </scene>
-        <!--Add Spending View Controller - Debit-->
+        <!--Debit View Controller - Debit-->
         <scene sceneID="o90-eT-bQD">
             <objects>
-                <viewController id="mO1-tB-cqg" customClass="AddSpendingViewController" sceneMemberID="viewController">
+                <viewController id="mO1-tB-cqg" customClass="DebitViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eu2-LF-HYg"/>
                         <viewControllerLayoutGuide type="bottom" id="6L4-jN-TKy"/>
@@ -253,10 +253,10 @@
             </objects>
             <point key="canvasLocation" x="404" y="13"/>
         </scene>
-        <!--Deposit HistoryUI Table View Controller - Deposit History-->
+        <!--Credit HistoryUI Table View Controller - Deposit History-->
         <scene sceneID="zUd-2M-1uT">
             <objects>
-                <tableViewController id="zxm-5r-feH" customClass="DepositHistoryUITableViewController" sceneMemberID="viewController">
+                <tableViewController id="zxm-5r-feH" customClass="CreditHistoryUITableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rmd-Dm-QMx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

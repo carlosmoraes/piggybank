@@ -1,21 +1,21 @@
 //
-//  AddSpendingViewController.m
+//  CreditViewController.m
 //  Piggy Bank
 //
-//  Created by OZZE on 16/11/13.
+//  Created by OZZE on 15/11/13.
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "AddSpendingViewController.h"
+#import "CreditViewController.h"
 
-@interface AddSpendingViewController ()
+@interface CreditViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
 
 @end
 
-@implementation AddSpendingViewController
+@implementation CreditViewController
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -25,16 +25,17 @@
     }
     return context;
 }
+
 - (IBAction)save:(id)sender {
     
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // Create a new managed object
-    NSManagedObject *newDebit = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
     
     double doubleValue = [self.valueTextField.text doubleValue];
-    [newDebit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
-    [newDebit setValue:self.descriptionTextField.text forKey:@"desc"];
+    [newCredit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit setValue:self.descriptionTextField.text forKey:@"desc"];
     
     NSError *error = nil;
     // Save the object to persistent store
