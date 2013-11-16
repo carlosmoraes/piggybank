@@ -10,11 +10,11 @@
 
 @interface PiggyBankViewController ()
 
-@property (strong, nonatomic) IBOutlet UILabel *budget;
-@property (strong, nonatomic) IBOutlet UILabel *spendings;
-@property (strong, nonatomic) IBOutlet UILabel *avaiableMoney;
-@property (strong) NSMutableArray *totalBudget;
-@property (strong) NSMutableArray *totalSpendings;
+@property (strong, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *creditLabel;
+@property (strong, nonatomic) IBOutlet UILabel *debitLabel;
+@property (strong) NSMutableArray *credits;
+@property (strong) NSMutableArray *debits;
 
 @end
 
@@ -38,14 +38,14 @@
     NSArray *objects;
     NSError *error;
     
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Budget"];
+    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
     objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     for (NSManagedObject *object in objects) {
         [self.managedObjectContext deleteObject:object];
     }
     
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Spendings"];
+    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
     objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     for (NSManagedObject *object in objects) {
@@ -70,22 +70,22 @@
     
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
-    NSNumber *budgetSum;
-    NSNumber *spendingSum;
-    NSNumber *avaiable;
+    NSNumber *totalCredits;
+    NSNumber *totalDebits;
+    NSNumber *balance;
     
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Budget"];
-    self.totalBudget = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    budgetSum = [self.totalBudget valueForKeyPath:@"@sum.amount"];
-    self.budget.text = [NSString stringWithFormat:@"%@", budgetSum];
+    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
+    self.credits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    totalCredits = [self.credits valueForKeyPath:@"@sum.amount"];
+    self.creditLabel.text = [NSString stringWithFormat:@"%@", totalCredits];
     
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Spendings"];
-    self.totalSpendings = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    spendingSum = [self.totalSpendings valueForKeyPath:@"@sum.amount"];
-    self.spendings.text = [NSString stringWithFormat:@"%@", spendingSum];
+    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
+    self.debits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    totalDebits = [self.debits valueForKeyPath:@"@sum.amount"];
+    self.debitLabel.text = [NSString stringWithFormat:@"%@", totalDebits];
     
-    avaiable = [NSNumber numberWithFloat:([budgetSum floatValue] - [spendingSum floatValue])];
-    self.avaiableMoney.text = [NSString stringWithFormat:@"%@", avaiable];
+    balance = [NSNumber numberWithFloat:([totalCredits floatValue] - [totalDebits floatValue])];
+    self.balanceLabel.text = [NSString stringWithFormat:@"%@", balance];
     
 }
 

@@ -32,7 +32,7 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     
     // Create a new managed object
-    NSManagedObject *addBudget = [NSEntityDescription insertNewObjectForEntityForName:@"Budget" inManagedObjectContext:context];
+    NSManagedObject *addBudget = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
     
     double amountDouble = [self.valueTextField.text doubleValue];
     [addBudget setValue:[NSNumber numberWithDouble:amountDouble] forKey:@"amount"];
