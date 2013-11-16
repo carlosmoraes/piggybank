@@ -253,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="404" y="13"/>
         </scene>
-        <!--Credit HistoryUI Table View Controller - Deposit History-->
+        <!--Credit HistoryUI Table View Controller - Credit History-->
         <scene sceneID="zUd-2M-1uT">
             <objects>
                 <tableViewController id="zxm-5r-feH" customClass="CreditHistoryUITableViewController" sceneMemberID="viewController">
@@ -292,7 +292,7 @@
                             <outlet property="delegate" destination="zxm-5r-feH" id="59X-wr-Mgx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Deposit History" id="CGI-dI-YwM"/>
+                    <navigationItem key="navigationItem" title="Credit History" id="CGI-dI-YwM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GLR-8g-eqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
