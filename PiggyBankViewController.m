@@ -70,25 +70,22 @@
     
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
-    NSNumber *totalCredits;
-    NSNumber *totalDebits;
-    NSNumber *balance;
+    NSDecimalNumber *totalCredits;
+    NSDecimalNumber *totalDebits;
+    NSDecimalNumber *balance;
     
     fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
     self.credits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     totalCredits = [self.credits valueForKeyPath:@"@sum.amount"];
-    double totalCreditsDouble = [totalCredits doubleValue];
-    self.creditLabel.text = [NSString stringWithFormat:@"%1.2f", totalCreditsDouble];
+    self.creditLabel.text = [NSString stringWithFormat:@"%1@", totalCredits];
     
     fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
     self.debits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     totalDebits = [self.debits valueForKeyPath:@"@sum.amount"];
-    double totalDebitsDouble = [totalDebits doubleValue];
-    self.debitLabel.text = [NSString stringWithFormat:@"%1.2f", totalDebitsDouble];
+    self.debitLabel.text = [NSString stringWithFormat:@"%1@", totalDebits];
     
-    balance = [NSNumber numberWithFloat:([totalCredits floatValue] - [totalDebits floatValue])];
-    double balanceDouble = [balance doubleValue];
-    self.balanceLabel.text = [NSString stringWithFormat:@"%1.2f", balanceDouble];
+    balance = [totalCredits decimalNumberBySubtracting:totalDebits];
+    self.balanceLabel.text = [NSString stringWithFormat:@"%1@", balance];
     
 }
 

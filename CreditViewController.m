@@ -8,7 +8,7 @@
 
 #import "CreditViewController.h"
 
-@interface CreditViewController ()
+@interface CreditViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
@@ -51,6 +51,37 @@
     
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    if (textField.tag == 1){
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
+        
+        // Validates if number doesn't have more than 2 digits after the "."
+        if ([arrayOfString count] > 2 )
+            return NO;
+    
+        if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
+            return NO;
+        
+        // Validates if the number isn't bigger than 999999999.99
+        double newStringToDouble = [newString doubleValue];
+        
+        if(newStringToDouble > 999999999.99)
+            return NO;
+    }
+    
+    if (textField.tag == 2){
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        if ([newString length] > 16)
+            return NO;
+    }
+
+    return YES;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -64,6 +95,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
+    
 }
 
 - (void)didReceiveMemoryWarning
