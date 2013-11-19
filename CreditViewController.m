@@ -53,9 +53,9 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
     if (textField.tag == 1){
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
         
         // Validates if number doesn't have more than 2 digits after the "."
@@ -73,7 +73,6 @@
     }
     
     if (textField.tag == 2){
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         
         if ([newString length] > 16)
             return NO;
