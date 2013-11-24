@@ -29,6 +29,7 @@
 - (IBAction)save:(id)sender {
     
     NSManagedObjectContext *context = [self managedObjectContext];
+    NSDate *date = [NSDate date];
     
     // Create a new managed object
     NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
@@ -36,6 +37,7 @@
     double doubleValue = [self.valueTextField.text doubleValue];
     [newCredit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
     [newCredit setValue:self.descriptionTextField.text forKey:@"desc"];
+    [newCredit setValue:date forKey:@"date"];
     
     NSError *error = nil;
     // Save the object to persistent store

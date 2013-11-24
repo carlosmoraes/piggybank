@@ -7,6 +7,7 @@
 //
 
 #import "CreditHistoryUITableViewController.h"
+#import "HistoryCellUITableViewCell.h"
 
 @interface CreditHistoryUITableViewController ()
 
@@ -83,15 +84,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
+    HistoryCellUITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSManagedObject *credit = [self.credits objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@", [credit valueForKey:@"amount"]]];
-    [cell.detailTextLabel setText:[credit valueForKey:@"desc"]];
+    
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"amount"]];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"desc"]];
+    
+    NSDate *date = [credit valueForKey:@"date"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    cell.dateLabel.text = dateString;
     
     return cell;
 }

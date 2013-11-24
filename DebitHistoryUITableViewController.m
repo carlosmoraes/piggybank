@@ -7,6 +7,7 @@
 //
 
 #import "DebitHistoryUITableViewController.h"
+#import "HistoryCellUITableViewCell.h"
 
 @interface DebitHistoryUITableViewController ()
 
@@ -83,17 +84,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    HistoryCellUITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSManagedObject *credit = [self.debits objectAtIndex:indexPath.row];
     
-    // Configure the cell...
-    NSManagedObject *debit = [self.debits objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@", [debit valueForKey:@"amount"]]];
-    [cell.detailTextLabel setText:[debit valueForKey:@"desc"]];
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"amount"]];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"desc"]];
+    
+    NSDate *date = [credit valueForKey:@"date"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    
+    cell.dateLabel.text = dateString;
     
     return cell;
+    
+    // static NSString *CellIdentifier = @"Cell";
+    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
+    // NSManagedObject *debit = [self.debits objectAtIndex:indexPath.row];
+    // [cell.textLabel setText:[NSString stringWithFormat:@"%@", [debit valueForKey:@"amount"]]];
+    // [cell.detailTextLabel setText:[debit valueForKey:@"desc"]];
+    
+    // return cell;
 }
 
 /*
