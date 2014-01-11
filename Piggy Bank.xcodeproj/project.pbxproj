@@ -25,6 +25,7 @@
 		4B20574D18362AEC00D69588 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B20574C18362AEC00D69588 /* MainStoryboard.storyboard */; };
 		4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20574F1836325A00D69588 /* PiggyBankViewController.m */; };
 		4B20575618364CF000D69588 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20575518364CF000D69588 /* CreditViewController.m */; };
+		4B2FFF5D1881A342009EAE40 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2FFF5C1881A342009EAE40 /* HistoryViewController.m */; };
 		4B40B8DD18424BAA005C47E0 /* HistoryCellUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40B8DC18424BAA005C47E0 /* HistoryCellUITableViewCell.m */; };
 		4B5F747A1837A1BC0058844C /* DebitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74791837A1BC0058844C /* DebitViewController.m */; };
 		4B5F747D1837BDDC0058844C /* CreditHistoryUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F747C1837BDDC0058844C /* CreditHistoryUITableViewController.m */; };
@@ -65,6 +66,8 @@
 		4B20574F1836325A00D69588 /* PiggyBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiggyBankViewController.m; sourceTree = "<group>"; };
 		4B20575418364CF000D69588 /* CreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
 		4B20575518364CF000D69588 /* CreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		4B2FFF5B1881A342009EAE40 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		4B2FFF5C1881A342009EAE40 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		4B40B8DB18424BAA005C47E0 /* HistoryCellUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCellUITableViewCell.h; sourceTree = "<group>"; };
 		4B40B8DC18424BAA005C47E0 /* HistoryCellUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCellUITableViewCell.m; sourceTree = "<group>"; };
 		4B5F74781837A1BC0058844C /* DebitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebitViewController.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 		4B20570B183628FE00D69588 = {
 			isa = PBXGroup;
 			children = (
+				4B2FFF5B1881A342009EAE40 /* HistoryViewController.h */,
+				4B2FFF5C1881A342009EAE40 /* HistoryViewController.m */,
 				4B40B8DB18424BAA005C47E0 /* HistoryCellUITableViewCell.h */,
 				4B40B8DC18424BAA005C47E0 /* HistoryCellUITableViewCell.m */,
 				4B5F74811837DA160058844C /* DebitHistoryUITableViewController.h */,
@@ -290,6 +295,7 @@
 				4B5F74831837DA160058844C /* DebitHistoryUITableViewController.m in Sources */,
 				4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */,
 				4B20575618364CF000D69588 /* CreditViewController.m in Sources */,
+				4B2FFF5D1881A342009EAE40 /* HistoryViewController.m in Sources */,
 				4B40B8DD18424BAA005C47E0 /* HistoryCellUITableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

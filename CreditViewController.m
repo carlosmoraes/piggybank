@@ -68,10 +68,9 @@
             return NO;
         
         // Validates if the number isn't bigger than 999999999.99
-        double newStringToDouble = [newString doubleValue];
-        
-        if(newStringToDouble > 999999999.99)
-            return NO;
+        // double newStringToDouble = [newString doubleValue];
+        // if(newStringToDouble > 999999999.99)
+        // return NO;
     }
     
     if (textField.tag == 2){

@@ -14,10 +14,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *previousBalanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *creditLabel;
 @property (strong, nonatomic) IBOutlet UILabel *debitLabel;
-@property (strong) NSMutableArray *credits;
-@property (strong) NSMutableArray *debits;
-@property (strong) NSArray *creditsByMonth;
-@property (strong) NSArray *debitsByMonth;
+@property (strong) NSDate *beginningOfCurrentMonth;
+@property (strong) NSDate *beginningOfNextMonth;
+@property (strong) NSDate *beginningOfLastMonth;
 @end
 
 @implementation PiggyBankViewController
@@ -58,12 +57,9 @@
     
 }
 
-- (IBAction)Populate:(id)sender {
+- (IBAction)populate:(id)sender {
     
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
-    // NSManagedObject *newDebit = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
-    
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"MM/dd/yyyy"];
     
@@ -71,11 +67,65 @@
     NSDate *fakeDate;
     double doubleValue;
     
-    doubleValue = 100.00;
-    [newCredit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
-    [newCredit setValue:@"P1" forKey:@"desc"];
+    // Credits
+    
+    NSManagedObject *newCredit0 = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
+    doubleValue = 1000.00;
+    [newCredit0 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit0 setValue:@"C0" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"10/10/2013"];
+    [newCredit0 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newCredit1 = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
+    doubleValue = 60.00;
+    [newCredit1 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit1 setValue:@"C1" forKey:@"desc"];
     fakeDate = [df dateFromString:@"11/30/2013"];
-    [newCredit setValue:fakeDate forKey:@"date"];
+    [newCredit1 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newCredit2 = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
+    doubleValue = 50.97;
+    [newCredit2 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit2 setValue:@"C2" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"12/01/2013"];
+    [newCredit2 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newCredit3 = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
+    doubleValue = 99.03;
+    [newCredit3 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newCredit3 setValue:@"C3" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"12/31/2013"];
+    [newCredit3 setValue:fakeDate forKey:@"date"];
+    
+    // Debits
+    
+    NSManagedObject *newDebit0 = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    doubleValue = 1000.00;
+    [newDebit0 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newDebit0 setValue:@"D0" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"10/10/2013"];
+    [newDebit0 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newDebit1 = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    doubleValue = 20.00;
+    [newDebit1 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newDebit1 setValue:@"D1" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"11/29/2013"];
+    [newDebit1 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newDebit2 = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    doubleValue = 00.88;
+    [newDebit2 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newDebit2 setValue:@"D2" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"12/05/2013"];
+    [newDebit2 setValue:fakeDate forKey:@"date"];
+    
+    NSManagedObject *newDebit3 = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    doubleValue = 179.12;
+    [newDebit3 setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    [newDebit3 setValue:@"D3" forKey:@"desc"];
+    fakeDate = [df dateFromString:@"12/31/2013"];
+    [newDebit3 setValue:fakeDate forKey:@"date"];
     
     error = nil;
     if (![context save:&error]) {
@@ -98,72 +148,125 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self updateCurrentPeriod];
     
-    NSDate *now = [NSDate date];
+    NSDate *now;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    // Showing current month
-    [dateFormatter setDateFormat:@"MMMM"];
+    [dateFormatter setDateFormat:@"MMMM, YYYY"];
     self.monthLabel.text = [dateFormatter stringFromDate:now];
     
-    // Setting the beginning of current month
-    NSDateComponents *nowComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:now];
-    [nowComponents setDay:1];
-    NSDate *beginningOfCurrentMonth = [calendar dateFromComponents:nowComponents];
-    
-    // Setting the beginning of next month
-    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
-    [oneMonth setMonth:1];
-    NSDate *beginningOfNextMonth = [calendar dateByAddingComponents:oneMonth toDate:beginningOfCurrentMonth options:0];
-    
-    // Setting the beginning of last month;
-    [oneMonth setMonth:-1];
-    NSDate *beginningOfLastMonth = [calendar dateByAddingComponents:oneMonth toDate:beginningOfCurrentMonth options:0];
-    
-    // NSLog(@"%@", beginningOfCurrentMonth);
-    // NSLog(@"%@", beginningOfNextMonth);
-    // NSLog(@"%@", beginningOfLastMonth);
-    
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSPredicate *predicate;
-    NSFetchRequest *fetchRequest;
-    NSDecimalNumber *totalCredits;
-    NSDecimalNumber *totalDebits;
     NSDecimalNumber *monthCredits;
-    NSDecimalNumber *monthDebits;
-    NSDecimalNumber *balance;
-    NSDecimalNumber *previousBalance;
-    
-    predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", beginningOfCurrentMonth, beginningOfNextMonth];
-    
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
-    self.credits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    totalCredits = [self.credits valueForKeyPath:@"@sum.amount"];
-    self.creditsByMonth = [self.credits filteredArrayUsingPredicate:predicate];
-    monthCredits = [self.creditsByMonth  valueForKeyPath:@"@sum.amount"];
+    monthCredits = [self sumCredits:self.beginningOfCurrentMonth byPeriod:self.beginningOfNextMonth];
     self.creditLabel.text = [NSString stringWithFormat:@"%1@", monthCredits];
-    // self.creditLabel.text = [NSString stringWithFormat:@"%1@", totalCredits];
     
-    fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
-    self.debits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    totalDebits = [self.debits valueForKeyPath:@"@sum.amount"];
-    self.debitsByMonth = [self.debits filteredArrayUsingPredicate:predicate];
-    monthDebits = [self.debitsByMonth  valueForKeyPath:@"@sum.amount"];
+    NSDecimalNumber *monthDebits;
+    monthDebits = [self sumDebits:self.beginningOfCurrentMonth byPeriod:self.beginningOfNextMonth];
     self.debitLabel.text = [NSString stringWithFormat:@"%1@", monthDebits];
-    // self.debitLabel.text = [NSString stringWithFormat:@"%1@", totalDebits];
     
-    balance = [totalCredits decimalNumberBySubtracting:totalDebits];
+    NSDecimalNumber *balance;
+    balance = [self calculateBalance];
     self.balanceLabel.text = [NSString stringWithFormat:@"%1@", balance];
     
-    predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", beginningOfLastMonth, beginningOfCurrentMonth];
-    self.creditsByMonth = [self.credits filteredArrayUsingPredicate:predicate];
-    monthCredits = [self.creditsByMonth  valueForKeyPath:@"@sum.amount"];
-    self.debitsByMonth = [self.debits filteredArrayUsingPredicate:predicate];
-    monthDebits = [self.debitsByMonth  valueForKeyPath:@"@sum.amount"];
-    previousBalance = [monthCredits decimalNumberBySubtracting:monthDebits];
+    NSDecimalNumber *previousBalance;
+    previousBalance = [self calculateBalance:self.beginningOfLastMonth byPeriod:self.beginningOfCurrentMonth];
     self.previousBalanceLabel.text = [NSString stringWithFormat:@"%1@", previousBalance];
+}
+
+- (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+    NSDecimalNumber *sum;
+    NSPredicate *predicate;
+    NSArray *objects;
     
+    predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
+    objects = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    sum = [objects valueForKeyPath:@"@sum.amount"];
+    
+    return sum;
+}
+
+- (NSDecimalNumber *)sumDebits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+    NSDecimalNumber *sum;
+    NSPredicate *predicate;
+    NSArray *objects;
+    
+    predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
+    objects = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
+    sum = [objects valueForKeyPath:@"@sum.amount"];
+
+    return sum;
+}
+
+- (NSDecimalNumber *)calculateBalance{
+    NSDecimalNumber *balance;
+    NSDecimalNumber *totalCredits;
+    NSDecimalNumber *totalDebits;
+    NSArray *credits;
+    NSArray *debits;
+    
+    credits = [self getObjectsFromStore:0];
+    debits = [self getObjectsFromStore:1];
+    totalCredits = [credits valueForKeyPath:@"@sum.amount"];
+    totalDebits = [debits valueForKeyPath:@"@sum.amount"];
+    balance = [totalCredits decimalNumberBySubtracting:totalDebits];
+    return balance;
+}
+
+- (NSDecimalNumber *)calculateBalance:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+    NSDecimalNumber *balance;
+    NSPredicate *predicate;
+    NSDecimalNumber *totalCredits;
+    NSDecimalNumber *totalDebits;
+    NSArray *credits;
+    NSArray *debits;
+    
+    predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
+    credits = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    debits = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
+    totalCredits = [credits valueForKeyPath:@"@sum.amount"];
+    totalDebits = [debits valueForKeyPath:@"@sum.amount"];
+    balance = [totalCredits decimalNumberBySubtracting:totalDebits];
+    
+    return balance;
+}
+
+- (NSMutableArray *)getObjectsFromStore:(int)store{
+    NSMutableArray *objects;
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest;
+    
+    switch (store)
+    {
+        case 0:
+            // NSLog (@"Credit");
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            break;
+        case 1:
+            // NSLog (@"Debit");
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            break;
+        default:
+            // NSLog (@"Invalid store");
+            break;
+    }
+    
+    return objects;
+}
+
+-(void)updateCurrentPeriod {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:now];
+    [dateComponents setDay:1];
+    self.beginningOfCurrentMonth = [calendar dateFromComponents:dateComponents];
+    
+    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
+    [oneMonth setMonth:1];
+    self.beginningOfNextMonth = [calendar dateByAddingComponents:oneMonth toDate:self.beginningOfCurrentMonth options:0];
+    
+    [oneMonth setMonth:-1];
+    self.beginningOfLastMonth = [calendar dateByAddingComponents:oneMonth toDate:self.beginningOfCurrentMonth options:0];
 }
 
 - (void)viewDidLoad
