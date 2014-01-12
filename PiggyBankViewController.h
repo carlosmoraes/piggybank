@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
 
 @interface PiggyBankViewController : UIViewController
 
@@ -18,5 +19,6 @@
 @property (strong) NSDate *currentMonth;
 @property (strong) NSDate *nextMonth;
 @property (strong) NSDate *previousMonth;
+@property (nonatomic,strong) Utilities *utilities;
 
 @end

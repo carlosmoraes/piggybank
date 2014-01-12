@@ -15,16 +15,6 @@
 
 @implementation CreditHistoryUITableViewController
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -43,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.utilities = [[Utilities alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -80,14 +71,14 @@
     HistoryCellUITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSManagedObject *credit = [self.credits objectAtIndex:indexPath.row];
     
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"amount"]];
+    NSDecimalNumber *amount;
+    amount = [credit valueForKey:@"amount"];
+    cell.titleLabel.text = [self.utilities decimalNumberAsString: amount];
+    
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"desc"]];
     
     NSDate *date = [credit valueForKey:@"date"];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy/MM/dd"];
-    NSString *dateString = [dateFormat stringFromDate:date];
-    
+    NSString *dateString = [self.utilities dateToFortmat:date :0];
     cell.dateLabel.text = dateString;
     
     return cell;

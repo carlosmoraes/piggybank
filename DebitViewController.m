@@ -30,8 +30,8 @@
     // Create a new managed object
     NSManagedObject *newDebit = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
     
-    double doubleValue = [self.valueTextField.text doubleValue];
-    [newDebit setValue:[NSNumber numberWithDouble:doubleValue] forKey:@"amount"];
+    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
+    [newDebit setValue:amount forKey:@"amount"];
     [newDebit setValue:self.descriptionTextField.text forKey:@"desc"];
     [newDebit setValue:date forKey:@"date"];
     

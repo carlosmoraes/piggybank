@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
+#import "CreditHistoryUITableViewController.h"
+#import "DebitHistoryUITableViewController.h"
 
 @interface HistoryViewController : UIViewController
 
@@ -18,5 +21,6 @@
 @property (strong) NSDate *nextMonth;
 @property (strong) NSArray *credits;
 @property (strong) NSArray *debits;
+@property (nonatomic,strong) Utilities *utilities;
 
 @end

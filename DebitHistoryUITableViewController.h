@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HistoryCellUITableViewCell.h"
+#import "Utilities.h"
 
 @interface DebitHistoryUITableViewController : UITableViewController
 
 @property (strong) NSArray *debits;
+@property (nonatomic,strong) Utilities *utilities;
 
 @end

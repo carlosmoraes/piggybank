@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
 
 @interface CreditHistoryUITableViewController : UITableViewController
 
 @property (strong) NSArray *credits;
+@property (nonatomic,strong) Utilities *utilities;
 
 @end
