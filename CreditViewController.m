@@ -28,56 +28,19 @@
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSDate *date = [NSDate date];
-    
-    // Create a new managed object
     NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
-    
     NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
     [newCredit setValue:amount forKey:@"amount"];
     [newCredit setValue:self.descriptionTextField.text forKey:@"desc"];
     [newCredit setValue:date forKey:@"date"];
     
     NSError *error = nil;
-    // Save the object to persistent store
+    
     if (![context save:&error]) {
         NSLog(@"Erro ao salvar! %@ %@", error, [error localizedDescription]);
     }
     
-    // else {
-    //   NSLog(@"Salvou!");
-    // }
-    
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    if (textField.tag == 1){
-        NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
-        
-        // Validates if number doesn't have more than 2 digits after the "."
-        if ([arrayOfString count] > 2 )
-            return NO;
-        
-        if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
-            return NO;
-        
-        // Validates if the number isn't bigger than 999999999.99
-        double newStringToDouble = [newString doubleValue];
-        
-        if(newStringToDouble > 999999999.99)
-            return NO;
-
-    }
-    
-    if (textField.tag == 2){
-        if ([newString length] > 16)
-            return NO;
-    }
-
-    return YES;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,6 +65,38 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField.tag == 1){
+        NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+        NSInteger centValue= cleanCentString.integerValue;
+        
+        if (string.length > 0)
+        {
+            centValue = centValue * 10 + string.integerValue;
+        }
+        else
+        {
+            centValue = centValue / 10;
+        }
+        
+        NSNumber *formatedValue;
+        formatedValue = [[NSNumber alloc] initWithFloat:(float)centValue / 100.0f];
+        NSNumberFormatter *_currencyFormatter = [[NSNumberFormatter alloc] init];
+        [_currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        textField.text = [_currencyFormatter stringFromNumber:formatedValue];
+        return NO;
+    }
+    
+    if (textField.tag == 2){
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if ([newString length] > 16)
+            return NO;
+    }
+    
+    return YES;
 }
 
 @end
