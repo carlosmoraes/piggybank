@@ -171,7 +171,6 @@
     [super viewDidLoad];
     self.currentMonth = [NSDate date];
     [self changeMonth:0];
-    
 }
 
 - (void)didReceiveMemoryWarning
