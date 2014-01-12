@@ -11,8 +11,6 @@
 
 @interface DebitHistoryUITableViewController ()
 
-@property (strong) NSMutableArray *debits;
-
 @end
 
 @implementation DebitHistoryUITableViewController
@@ -39,12 +37,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
-    self.debits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
     [self.tableView reloadData];
 }
 

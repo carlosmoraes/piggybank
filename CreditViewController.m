@@ -10,14 +10,12 @@
 
 @interface CreditViewController () <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *valueTextField;
-@property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-
 @end
 
 @implementation CreditViewController
 
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *)managedObjectContext
+{
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
     if ([delegate performSelector:@selector(managedObjectContext)]) {
@@ -26,8 +24,8 @@
     return context;
 }
 
-- (IBAction)save:(id)sender {
-    
+- (IBAction)save:(id)sender
+{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSDate *date = [NSDate date];
     
@@ -50,7 +48,6 @@
     // }
     
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

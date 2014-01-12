@@ -7,18 +7,11 @@
 //
 
 #import "HistoryViewController.h"
+#import "CreditHistoryUITableViewController.h"
+#import "DebitHistoryUITableViewController.h"
 
 @interface HistoryViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *monthLabel;
-@property (strong, nonatomic) IBOutlet UILabel *balanceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *creditLabel;
-@property (strong, nonatomic) IBOutlet UILabel *debitLabel;
-@property (strong) NSDate *selectedMonth;
-@property (strong) NSDate *nextMonth;
-@property (strong) NSMutableArray *credits;
-@property (strong) NSMutableArray *debits;
-@property (strong) NSArray *creditsByMonth;
-@property (strong) NSArray *debitsByMonth;
+
 @end
 
 @implementation HistoryViewController
@@ -42,33 +35,16 @@
     return self;
 }
 
-- (IBAction)nextMonth:(id)sender {
+- (IBAction)nextMonth:(id)sender
+{
     [self changeMonth:1];
     [self viewDidAppear:(true)];
 }
 
-- (IBAction)previousMonth:(id)sender {
+- (IBAction)previousMonth:(id)sender
+{
     [self changeMonth:-1];
     [self viewDidAppear:(true)];
-}
-
--(void) changeMonth:(NSInteger)byAmount {
-    
-    // Update month
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self.selectedMonth];
-    [dateComponents setDay:1];
-    NSDate *oldDate = [calendar dateFromComponents:dateComponents];
-    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
-    [oneMonth setMonth:byAmount];
-    NSDate *newDate = [calendar dateByAddingComponents:oneMonth toDate:oldDate options:0];
-    self.selectedMonth = newDate;
-    
-    // Set the beggining of following month for Predicate
-    [oneMonth setMonth:1];
-    NSDate *beginningOfFollowingMonth = [calendar dateByAddingComponents:oneMonth toDate:newDate options:0];
-    self.nextMonth = beginningOfFollowingMonth;
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,34 +67,65 @@
     NSDecimalNumber *balance;
     balance = [self calculateBalance:self.selectedMonth byPeriod:self.nextMonth];
     self.balanceLabel.text = [NSString stringWithFormat:@"%1@", balance];
-
 }
 
-- (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+- (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *sum;
     NSPredicate *predicate;
-    NSArray *objects;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
-    sum = [objects valueForKeyPath:@"@sum.amount"];
+    self.credits = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    sum = [self.credits valueForKeyPath:@"@sum.amount"];
     
     return sum;
 }
 
-- (NSDecimalNumber *)sumDebits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+-(void) changeMonth:(NSInteger)byAmount // Change month
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self.selectedMonth];
+    [dateComponents setDay:1];
+    NSDate *oldDate = [calendar dateFromComponents:dateComponents];
+    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
+    [oneMonth setMonth:byAmount];
+    NSDate *newDate = [calendar dateByAddingComponents:oneMonth toDate:oldDate options:0];
+    self.selectedMonth = newDate;
+    
+    // Set the beggining of following month for Predicate
+    [oneMonth setMonth:1];
+    NSDate *beginningOfFollowingMonth = [calendar dateByAddingComponents:oneMonth toDate:newDate options:0];
+    self.nextMonth = beginningOfFollowingMonth;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([[segue identifier] isEqualToString:@"creditHistory"]) {
+        CreditHistoryUITableViewController *creditHistoryUITableViewController = [segue destinationViewController];
+        creditHistoryUITableViewController.credits = self.credits;
+    }
+    
+    if ([[segue identifier] isEqualToString:@"debitHistory"]) {
+        DebitHistoryUITableViewController *debitHistoryUITableViewController = [segue destinationViewController];
+        debitHistoryUITableViewController.debits = self.debits;
+    }
+}
+
+- (NSDecimalNumber *)sumDebits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *sum;
     NSPredicate *predicate;
-    NSArray *objects;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
-    sum = [objects valueForKeyPath:@"@sum.amount"];
+    self.debits = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
+    sum = [self.debits valueForKeyPath:@"@sum.amount"];
     
     return sum;
 }
 
-- (NSDecimalNumber *)calculateBalance:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+- (NSDecimalNumber *)calculateBalance:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *balance;
     NSPredicate *predicate;
     NSDecimalNumber *totalCredits;
@@ -136,7 +143,8 @@
     return balance;
 }
 
-- (NSMutableArray *)getObjectsFromStore:(int)store{
+- (NSMutableArray *)getObjectsFromStore:(int)store
+{
     NSMutableArray *objects;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
@@ -172,4 +180,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 @end

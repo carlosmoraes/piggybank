@@ -10,4 +10,6 @@
 
 @interface CreditHistoryUITableViewController : UITableViewController
 
+@property (strong) NSArray *credits;
+
 @end

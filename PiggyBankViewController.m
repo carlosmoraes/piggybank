@@ -9,14 +9,7 @@
 #import "PiggyBankViewController.h"
 
 @interface PiggyBankViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *monthLabel;
-@property (strong, nonatomic) IBOutlet UILabel *balanceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *previousBalanceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *creditLabel;
-@property (strong, nonatomic) IBOutlet UILabel *debitLabel;
-@property (strong) NSDate *beginningOfCurrentMonth;
-@property (strong) NSDate *beginningOfNextMonth;
-@property (strong) NSDate *beginningOfLastMonth;
+
 @end
 
 @implementation PiggyBankViewController
@@ -31,9 +24,9 @@
     return context;
 }
 
-// Reset all data in store
-- (IBAction)reset:(id)sender {
 
+- (IBAction)reset:(id)sender // Reset all stored data
+{
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
     NSArray *objects;
@@ -54,11 +47,10 @@
     }
     
     [self viewDidAppear:(true)];
-    
 }
 
-- (IBAction)populate:(id)sender {
-    
+- (IBAction)populate:(id)sender
+{
     NSManagedObjectContext *context = [self managedObjectContext];
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"MM/dd/yyyy"];
@@ -172,7 +164,8 @@
     self.previousBalanceLabel.text = [NSString stringWithFormat:@"%1@", previousBalance];
 }
 
-- (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+- (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *sum;
     NSPredicate *predicate;
     NSArray *objects;
@@ -184,7 +177,8 @@
     return sum;
 }
 
-- (NSDecimalNumber *)sumDebits:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+- (NSDecimalNumber *)sumDebits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *sum;
     NSPredicate *predicate;
     NSArray *objects;
@@ -196,7 +190,8 @@
     return sum;
 }
 
-- (NSDecimalNumber *)calculateBalance{
+- (NSDecimalNumber *)calculateBalance
+{
     NSDecimalNumber *balance;
     NSDecimalNumber *totalCredits;
     NSDecimalNumber *totalDebits;
@@ -211,7 +206,8 @@
     return balance;
 }
 
-- (NSDecimalNumber *)calculateBalance:(NSDate *)initDate byPeriod:(NSDate *) finalDate{
+- (NSDecimalNumber *)calculateBalance:(NSDate *)initDate byPeriod:(NSDate *) finalDate
+{
     NSDecimalNumber *balance;
     NSPredicate *predicate;
     NSDecimalNumber *totalCredits;
@@ -229,7 +225,8 @@
     return balance;
 }
 
-- (NSMutableArray *)getObjectsFromStore:(int)store{
+- (NSMutableArray *)getObjectsFromStore:(int)store
+{
     NSMutableArray *objects;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
@@ -254,7 +251,8 @@
     return objects;
 }
 
--(void)updateCurrentPeriod {
+-(void)updateCurrentPeriod
+{
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:now];

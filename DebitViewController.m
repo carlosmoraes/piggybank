@@ -10,9 +10,6 @@
 
 @interface DebitViewController () <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *valueTextField;
-@property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-
 @end
 
 @implementation DebitViewController

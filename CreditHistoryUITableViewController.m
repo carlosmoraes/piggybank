@@ -11,8 +11,6 @@
 
 @interface CreditHistoryUITableViewController ()
 
-@property (strong) NSMutableArray *credits;
-
 @end
 
 @implementation CreditHistoryUITableViewController
@@ -39,12 +37,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
-    self.credits = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
     [self.tableView reloadData];
 }
 

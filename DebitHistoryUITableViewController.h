@@ -10,4 +10,6 @@
 
 @interface DebitHistoryUITableViewController : UITableViewController
 
+@property (strong) NSArray *debits;
+
 @end
