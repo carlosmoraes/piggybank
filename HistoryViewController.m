@@ -54,18 +54,18 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM, YYYY"];
-    self.monthLabel.text = [dateFormatter stringFromDate:self.selectedMonth];
+    self.monthLabel.text = [dateFormatter stringFromDate:self.currentMonth];
     
     NSDecimalNumber *monthCredits;
-    monthCredits = [self sumCredits:self.selectedMonth byPeriod:self.nextMonth];
+    monthCredits = [self sumCredits:self.currentMonth byPeriod:self.nextMonth];
     self.creditLabel.text = [NSString stringWithFormat:@"%1@", monthCredits];
     
     NSDecimalNumber *monthDebits;
-    monthDebits = [self sumDebits:self.selectedMonth byPeriod:self.nextMonth];
+    monthDebits = [self sumDebits:self.currentMonth byPeriod:self.nextMonth];
     self.debitLabel.text = [NSString stringWithFormat:@"%1@", monthDebits];
     
     NSDecimalNumber *balance;
-    balance = [self calculateBalance:self.selectedMonth byPeriod:self.nextMonth];
+    balance = [self calculateBalance:self.currentMonth byPeriod:self.nextMonth];
     self.balanceLabel.text = [NSString stringWithFormat:@"%1@", balance];
 }
 
@@ -84,13 +84,13 @@
 -(void) changeMonth:(NSInteger)byAmount // Change month
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self.selectedMonth];
+    NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self.currentMonth];
     [dateComponents setDay:1];
     NSDate *oldDate = [calendar dateFromComponents:dateComponents];
     NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
     [oneMonth setMonth:byAmount];
     NSDate *newDate = [calendar dateByAddingComponents:oneMonth toDate:oldDate options:0];
-    self.selectedMonth = newDate;
+    self.currentMonth = newDate;
     
     // Set the beggining of following month for Predicate
     [oneMonth setMonth:1];
@@ -148,22 +148,22 @@
     NSMutableArray *objects;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
+    NSString *entity;
     
     switch (store)
     {
         case 0:
-            // NSLog (@"Credit");
-            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            entity = @"Credit";
             break;
         case 1:
-            // NSLog (@"Debit");
-            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            entity = @"Debit";
             break;
         default:
-            // NSLog (@"Invalid store");
+            NSLog (@"Invalid entity");
             break;
+            
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     }
     
     return objects;
@@ -172,7 +172,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.selectedMonth = [NSDate date];
+    self.currentMonth = [NSDate date];
 }
 
 - (void)didReceiveMemoryWarning

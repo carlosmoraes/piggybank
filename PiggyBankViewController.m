@@ -148,11 +148,11 @@
     self.monthLabel.text = [dateFormatter stringFromDate:now];
     
     NSDecimalNumber *monthCredits;
-    monthCredits = [self sumCredits:self.beginningOfCurrentMonth byPeriod:self.beginningOfNextMonth];
+    monthCredits = [self sumCredits:self.currentMonth byPeriod:self.nextMonth];
     self.creditLabel.text = [NSString stringWithFormat:@"%1@", monthCredits];
     
     NSDecimalNumber *monthDebits;
-    monthDebits = [self sumDebits:self.beginningOfCurrentMonth byPeriod:self.beginningOfNextMonth];
+    monthDebits = [self sumDebits:self.currentMonth byPeriod:self.nextMonth];
     self.debitLabel.text = [NSString stringWithFormat:@"%1@", monthDebits];
     
     NSDecimalNumber *balance;
@@ -160,7 +160,7 @@
     self.balanceLabel.text = [NSString stringWithFormat:@"%1@", balance];
     
     NSDecimalNumber *previousBalance;
-    previousBalance = [self calculateBalance:self.beginningOfLastMonth byPeriod:self.beginningOfCurrentMonth];
+    previousBalance = [self calculateBalance:self.previousMonth byPeriod:self.currentMonth];
     self.previousBalanceLabel.text = [NSString stringWithFormat:@"%1@", previousBalance];
 }
 
@@ -230,22 +230,22 @@
     NSMutableArray *objects;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
+    NSString *entity;
     
     switch (store)
     {
         case 0:
-            // NSLog (@"Credit");
-            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            entity = @"Credit";
             break;
         case 1:
-            // NSLog (@"Debit");
-            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            entity = @"Debit";
             break;
         default:
-            // NSLog (@"Invalid store");
+            NSLog (@"Invalid entity");
             break;
+            
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     }
     
     return objects;
@@ -257,14 +257,14 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:now];
     [dateComponents setDay:1];
-    self.beginningOfCurrentMonth = [calendar dateFromComponents:dateComponents];
+    self.currentMonth = [calendar dateFromComponents:dateComponents];
     
     NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
     [oneMonth setMonth:1];
-    self.beginningOfNextMonth = [calendar dateByAddingComponents:oneMonth toDate:self.beginningOfCurrentMonth options:0];
+    self.nextMonth = [calendar dateByAddingComponents:oneMonth toDate:self.currentMonth options:0];
     
     [oneMonth setMonth:-1];
-    self.beginningOfLastMonth = [calendar dateByAddingComponents:oneMonth toDate:self.beginningOfCurrentMonth options:0];
+    self.previousMonth = [calendar dateByAddingComponents:oneMonth toDate:self.currentMonth options:0];
 }
 
 - (void)viewDidLoad

@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *creditLabel;
 @property (strong, nonatomic) IBOutlet UILabel *debitLabel;
-@property (strong) NSDate *selectedMonth;
+@property (strong) NSDate *currentMonth;
 @property (strong) NSDate *nextMonth;
 @property (strong) NSArray *credits;
 @property (strong) NSArray *debits;
