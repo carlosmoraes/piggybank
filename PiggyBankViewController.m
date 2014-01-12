@@ -230,22 +230,20 @@
     NSMutableArray *objects;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
-    NSString *entity;
     
     switch (store)
     {
         case 0:
-            entity = @"Credit";
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
             break;
         case 1:
-            entity = @"Debit";
+            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
+            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
             break;
         default:
             NSLog (@"Invalid entity");
             break;
-            
-            fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     }
     
     return objects;
