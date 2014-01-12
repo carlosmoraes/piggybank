@@ -142,7 +142,7 @@
     [super viewDidAppear:animated];
     [self updateCurrentPeriod];
     
-    NSDate *now;
+    NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM, YYYY"];
     self.monthLabel.text = [dateFormatter stringFromDate:now];
