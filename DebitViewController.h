@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
 
 @interface DebitViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (nonatomic,strong) Utilities *utilities;
 
 @end

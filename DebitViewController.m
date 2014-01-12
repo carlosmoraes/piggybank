@@ -14,17 +14,9 @@
 
 @implementation DebitViewController
 
-- (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
 - (IBAction)save:(id)sender {
     
-    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObjectContext *context = [self.utilities managedObjectContext];
     NSDate *date = [NSDate date];
     
     // Create a new managed object
@@ -51,28 +43,29 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
     if (textField.tag == 1){
-        NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
+        if (textField.tag == 1){
+            NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
+            
+            if ([arrayOfString count] > 2 )
+                return NO;
+            
+            if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
+                return NO;
+        }
         
-        // Validates if number doesn't have more than 2 digits after the "."
-        if ([arrayOfString count] > 2 )
-            return NO;
+        if (textField.tag == 2){
+            
+            if ([newString length] > 16)
+                return NO;
+        }
         
-        if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
-            return NO;
-        
-        // Validates if the number isn't bigger than 999999999.99
-        double newStringToDouble = [newString doubleValue];
-        
-        if(newStringToDouble > 999999999.99)
-            return NO;
+        return YES;
     }
     
     if (textField.tag == 2){
-        
         if ([newString length] > 16)
             return NO;
     }
@@ -92,8 +85,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+	self.utilities = [[Utilities alloc] init];
     self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
     
 }

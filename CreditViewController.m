@@ -14,19 +14,9 @@
 
 @implementation CreditViewController
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
-
 - (IBAction)save:(id)sender
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObjectContext *context = [self.utilities managedObjectContext];
     NSDate *date = [NSDate date];
     NSManagedObject *newCredit = [NSEntityDescription insertNewObjectForEntityForName:@"Credit" inManagedObjectContext:context];
     NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
@@ -55,8 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+    self.utilities = [[Utilities alloc] init];
     self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
     
 }
@@ -69,29 +58,29 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
     if (textField.tag == 1){
-        NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-        NSInteger centValue= cleanCentString.integerValue;
-        
-        if (string.length > 0)
-        {
-            centValue = centValue * 10 + string.integerValue;
-        }
-        else
-        {
-            centValue = centValue / 10;
+        if (textField.tag == 1){
+            NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
+            
+            if ([arrayOfString count] > 2 )
+                return NO;
+            
+            if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
+                return NO;
         }
         
-        NSNumber *formatedValue;
-        formatedValue = [[NSNumber alloc] initWithFloat:(float)centValue / 100.0f];
-        NSNumberFormatter *_currencyFormatter = [[NSNumberFormatter alloc] init];
-        [_currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-        textField.text = [_currencyFormatter stringFromNumber:formatedValue];
-        return NO;
+        if (textField.tag == 2){
+            
+            if ([newString length] > 16)
+                return NO;
+        }
+        
+        return YES;
     }
     
     if (textField.tag == 2){
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         if ([newString length] > 16)
             return NO;
     }
