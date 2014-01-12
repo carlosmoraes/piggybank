@@ -50,7 +50,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self changeMonth:0];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM, YYYY"];
@@ -171,6 +170,8 @@
 {
     [super viewDidLoad];
     self.currentMonth = [NSDate date];
+    [self changeMonth:0];
+    
 }
 
 - (void)didReceiveMemoryWarning
