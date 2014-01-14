@@ -12,7 +12,7 @@
 
 @interface DebitHistoryUITableViewController : UITableViewController
 
-@property (strong) NSArray *debits;
+@property (strong) NSMutableArray *debits;
 @property (nonatomic,strong) Utilities *utilities;
 
 @end

@@ -78,9 +78,36 @@
         }
         
         return YES;
+    
+//    if (textField.tag == 1){
+//        NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+//        // NSInteger centValue= cleanCentString.integerValue;
+//        
+//        NSDecimalNumber *base = [NSDecimalNumber decimalNumberWithString:@"10"];
+//        NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithString:cleanCentString];
+//        NSDecimalNumber *result;
+//        
+//        if (string.length > 0)
+//        {
+//            // centValue = centValue * 10 + string.integerValue;
+//            result = [decimalValue decimalNumberByMultiplyingBy:base];
+//        }
+//        else
+//        {
+//            // centValue = centValue / 10;
+//            result = [decimalValue decimalNumberByDividingBy:base];
+//        }
+//        
+//        NSNumberFormatter *_currencyFormatter = [[NSNumberFormatter alloc] init];
+//        [_currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+//        textField.text = [_currencyFormatter stringFromNumber:result];
+//        return NO;
+    
     }
     
     if (textField.tag == 2){
+//        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
         if ([newString length] > 16)
             return NO;
     }

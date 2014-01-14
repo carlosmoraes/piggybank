@@ -20,7 +20,7 @@
 @property (strong) NSDate *currentMonth;
 @property (strong) NSDate *nextMonth;
 @property (strong) NSArray *credits;
-@property (strong) NSArray *debits;
+@property (strong) NSMutableArray *debits;
 @property (nonatomic,strong) Utilities *utilities;
 
 @end

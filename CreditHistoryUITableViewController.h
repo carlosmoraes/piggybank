@@ -11,7 +11,7 @@
 
 @interface CreditHistoryUITableViewController : UITableViewController
 
-@property (strong) NSArray *credits;
+@property (strong) NSMutableArray *credits;
 @property (nonatomic,strong) Utilities *utilities;
 
 @end

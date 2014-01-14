@@ -82,7 +82,7 @@
     
     if ([[segue identifier] isEqualToString:@"debitHistory"]) {
         DebitHistoryUITableViewController *debitHistoryUITableViewController = [segue destinationViewController];
-        debitHistoryUITableViewController.debits = [self.utilities debits:self.currentMonth  byPeriod:self.nextMonth];
+        debitHistoryUITableViewController.debits = [[self.utilities debits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
     }
 }
 
