@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
 
-@interface CreditViewController : UIViewController
+@interface AddCreditsViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;

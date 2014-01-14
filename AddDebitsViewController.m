@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "DebitViewController.h"
+#import "AddDebitsViewController.h"
 
-@interface DebitViewController () <UITextFieldDelegate>
+@interface AddDebitsViewController () <UITextFieldDelegate>
 
 @end
 
-@implementation DebitViewController
+@implementation AddDebitsViewController
 
 - (IBAction)save:(id)sender {
     

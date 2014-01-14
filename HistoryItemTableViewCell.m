@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "HistoryCellUITableViewCell.h"
+#import "HistoryItemTableViewCell.h"
 
-@implementation HistoryCellUITableViewCell
+@implementation HistoryItemTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

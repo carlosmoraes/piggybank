@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="815" y="129"/>
         </scene>
-        <!--Credit View Controller - Credit-->
+        <!--Add Credits View Controller - Credit-->
         <scene sceneID="N4u-SD-nyL">
             <objects>
-                <viewController id="7x8-mP-xCf" customClass="CreditViewController" sceneMemberID="viewController">
+                <viewController id="7x8-mP-xCf" customClass="AddCreditsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wuC-3B-Uux"/>
                         <viewControllerLayoutGuide type="bottom" id="cYy-JB-yUh"/>
@@ -197,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="1789" y="-201"/>
         </scene>
-        <!--Debit View Controller - Debit-->
+        <!--Add Debits View Controller - Debit-->
         <scene sceneID="o90-eT-bQD">
             <objects>
-                <viewController id="mO1-tB-cqg" customClass="DebitViewController" sceneMemberID="viewController">
+                <viewController id="mO1-tB-cqg" customClass="AddDebitsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eu2-LF-HYg"/>
                         <viewControllerLayoutGuide type="bottom" id="6L4-jN-TKy"/>
@@ -281,17 +281,17 @@
             </objects>
             <point key="canvasLocation" x="404" y="13"/>
         </scene>
-        <!--Credit HistoryUI Table View Controller - Credit History-->
+        <!--Credits History Table View Controller - Credit History-->
         <scene sceneID="zUd-2M-1uT">
             <objects>
-                <tableViewController id="zxm-5r-feH" customClass="CreditHistoryUITableViewController" sceneMemberID="viewController">
+                <tableViewController id="zxm-5r-feH" customClass="CreditsHistoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rmd-Dm-QMx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="Ehk-Dd-2tu" customClass="HistoryCellUITableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="70"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="Ehk-Dd-2tu" customClass="HistoryItemTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehk-Dd-2tu" id="Ftd-7m-N67">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -336,17 +336,17 @@
             </objects>
             <point key="canvasLocation" x="1331" y="746"/>
         </scene>
-        <!--Debit HistoryUI Table View Controller - Debit History-->
+        <!--Debits History Table View Controller - Debit History-->
         <scene sceneID="UzL-7e-A9p">
             <objects>
-                <tableViewController id="wIB-Xh-bK5" customClass="DebitHistoryUITableViewController" sceneMemberID="viewController">
+                <tableViewController id="wIB-Xh-bK5" customClass="DebitsHistoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="kiF-to-rFg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="HistoryCellUITableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="70"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="HistoryItemTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2H-gX-jzb" id="dwy-sO-RG2">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>

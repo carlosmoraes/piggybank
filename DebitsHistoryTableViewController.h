@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HistoryCellUITableViewCell.h"
+#import "HistoryItemTableViewCell.h"
 #import "Utilities.h"
 
-@interface DebitHistoryUITableViewController : UITableViewController
+@interface DebitsHistoryTableViewController : UITableViewController
 
 @property (strong) NSMutableArray *debits;
 @property (nonatomic,strong) Utilities *utilities;

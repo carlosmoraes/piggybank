@@ -76,12 +76,12 @@
 {
     
     if ([[segue identifier] isEqualToString:@"creditHistory"]) {
-        CreditHistoryUITableViewController *creditHistoryUITableViewController = [segue destinationViewController];
+        CreditsHistoryTableViewController *creditHistoryUITableViewController = [segue destinationViewController];
         creditHistoryUITableViewController.credits = [self.utilities credits:self.currentMonth  byPeriod:self.nextMonth];
     }
     
     if ([[segue identifier] isEqualToString:@"debitHistory"]) {
-        DebitHistoryUITableViewController *debitHistoryUITableViewController = [segue destinationViewController];
+        DebitsHistoryTableViewController *debitHistoryUITableViewController = [segue destinationViewController];
         debitHistoryUITableViewController.debits = [[self.utilities debits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
     }
 }

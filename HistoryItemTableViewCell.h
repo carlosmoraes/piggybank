@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HistoryCellUITableViewCell : UITableViewCell
+@interface HistoryItemTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;

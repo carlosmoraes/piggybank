@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "CreditViewController.h"
+#import "AddCreditsViewController.h"
 
-@interface CreditViewController () <UITextFieldDelegate>
+@interface AddCreditsViewController () <UITextFieldDelegate>
 
 @end
 
-@implementation CreditViewController
+@implementation AddCreditsViewController
 
 - (IBAction)save:(id)sender
 {

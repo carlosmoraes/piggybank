@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
-#import "CreditHistoryUITableViewController.h"
-#import "DebitHistoryUITableViewController.h"
+#import "CreditsHistoryTableViewController.h"
+#import "DebitsHistoryTableViewController.h"
 
 @interface HistoryViewController : UIViewController
 

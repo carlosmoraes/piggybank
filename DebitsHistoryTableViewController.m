@@ -1,19 +1,18 @@
 //
-//  CreditHistoryUITableViewController.m
+//  DebitHistoryUITableViewController.m
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "CreditHistoryUITableViewController.h"
-#import "HistoryCellUITableViewCell.h"
+#import "DebitsHistoryTableViewController.h"
 
-@interface CreditHistoryUITableViewController ()
+@interface DebitsHistoryTableViewController ()
 
 @end
 
-@implementation CreditHistoryUITableViewController
+@implementation DebitsHistoryTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +36,7 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -62,14 +61,14 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     // return 0;
-    return self.credits.count;
+    return self.debits.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    HistoryCellUITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSManagedObject *credit = [self.credits objectAtIndex:indexPath.row];
+    HistoryItemTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSManagedObject *credit = [self.debits objectAtIndex:indexPath.row];
     
     NSDecimalNumber *amount;
     amount = [credit valueForKey:@"amount"];
@@ -82,6 +81,16 @@
     cell.dateLabel.text = dateString;
     
     return cell;
+    
+    // static NSString *CellIdentifier = @"Cell";
+    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...
+    // NSManagedObject *debit = [self.debits objectAtIndex:indexPath.row];
+    // [cell.textLabel setText:[NSString stringWithFormat:@"%@", [debit valueForKey:@"amount"]]];
+    // [cell.detailTextLabel setText:[debit valueForKey:@"desc"]];
+    
+    // return cell;
 }
 
 // Override to support conditional editing of the table view.
@@ -95,17 +104,17 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObject *item = [self.credits objectAtIndex:indexPath.row];
+        NSManagedObject *item = [self.debits objectAtIndex:indexPath.row];
         NSManagedObjectContext *context = [self.utilities managedObjectContext];
         [context deleteObject:item];
         
         NSError *error;
         if (![context save:&error])
         {
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"sorry the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
         }else{
-            [self.credits removeObjectAtIndex:indexPath.row];
+            [self.debits removeObjectAtIndex:indexPath.row];
         }
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -116,31 +125,31 @@
 }
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
+ #pragma mark - Navigation
+ 
+ // In a story board-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ 
  */
 
 @end
