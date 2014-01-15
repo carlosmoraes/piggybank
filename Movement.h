@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
 
-@interface AddDebitsViewController : UIViewController
+@interface Movement : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (nonatomic,strong) Utilities *utilities;
+@property (strong, nonatomic) NSString *movementType;
+@property (strong, nonatomic) Utilities *utilities;
 
 @end

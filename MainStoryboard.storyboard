@@ -74,7 +74,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7x8-mP-xCf" kind="push" id="sdj-Xc-MA2"/>
+                                    <segue destination="mO1-tB-cqg" kind="push" identifier="newCredit" id="gpT-nq-7Wx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh2-uk-DKa">
@@ -84,7 +84,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mO1-tB-cqg" kind="push" id="4Gf-ju-GSK"/>
+                                    <segue destination="mO1-tB-cqg" kind="push" identifier="newDebit" id="4Gf-ju-GSK"/>
                                 </connections>
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fM2-Ar-cz9">
@@ -130,77 +130,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6e-5O-whb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="815" y="129"/>
+            <point key="canvasLocation" x="745" y="13"/>
         </scene>
-        <!--Add Credits View Controller - Credit-->
-        <scene sceneID="N4u-SD-nyL">
-            <objects>
-                <viewController id="7x8-mP-xCf" customClass="AddCreditsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wuC-3B-Uux"/>
-                        <viewControllerLayoutGuide type="bottom" id="cYy-JB-yUh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9pO-GQ-OHB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPK-CY-pjN">
-                                <rect key="frame" x="20" y="79" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Short description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-Ws-JaO">
-                                <rect key="frame" x="20" y="156" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uLc-B9-fbc">
-                                <rect key="frame" x="20" y="108" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="7x8-mP-xCf" id="1EJ-U4-5NC"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Travel allowance" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OPX-YX-eL2">
-                                <rect key="frame" x="20" y="185" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="7x8-mP-xCf" id="gun-az-2gR"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6p-KO-ACz">
-                                <rect key="frame" x="266" y="228" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="save:" destination="7x8-mP-xCf" eventType="touchUpInside" id="Z4V-RP-Zid"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Credit" id="TGA-Tt-Eeb"/>
-                    <connections>
-                        <outlet property="descriptionTextField" destination="OPX-YX-eL2" id="feu-rc-IEi"/>
-                        <outlet property="valueTextField" destination="uLc-B9-fbc" id="7ca-Qy-Lbk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W1Z-gr-H8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1789" y="-201"/>
-        </scene>
-        <!--Add Debits View Controller - Debit-->
+        <!--Movement - New-->
         <scene sceneID="o90-eT-bQD">
             <objects>
-                <viewController id="mO1-tB-cqg" customClass="AddDebitsViewController" sceneMemberID="viewController">
+                <viewController id="mO1-tB-cqg" customClass="Movement" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eu2-LF-HYg"/>
                         <viewControllerLayoutGuide type="bottom" id="6L4-jN-TKy"/>
@@ -253,7 +188,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Debit" id="xIv-CJ-TLP"/>
+                    <navigationItem key="navigationItem" title="New" id="xIv-CJ-TLP"/>
                     <connections>
                         <outlet property="descriptionTextField" destination="kHT-1E-Zvz" id="lF2-Jo-2lD"/>
                         <outlet property="valueTextField" destination="bLJ-Dy-17k" id="2G9-bf-eNt"/>
@@ -261,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cqa-Du-emX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789" y="478"/>
+            <point key="canvasLocation" x="2269" y="13"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gdF-jV-icM">
@@ -279,77 +214,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZL-1h-Pu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="13"/>
+            <point key="canvasLocation" x="278" y="13"/>
         </scene>
-        <!--Credits History Table View Controller - Credit History-->
-        <scene sceneID="zUd-2M-1uT">
-            <objects>
-                <tableViewController id="zxm-5r-feH" customClass="CreditsHistoryTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rmd-Dm-QMx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="Ehk-Dd-2tu" customClass="HistoryItemTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="70"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehk-Dd-2tu" id="Ftd-7m-N67">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B24-eg-39U">
-                                            <rect key="frame" x="20" y="11" width="174" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="yyyy/mm/dd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygy-ns-JWq">
-                                            <rect key="frame" x="202" y="11" width="98" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE0-xf-idh">
-                                            <rect key="frame" x="20" y="40" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="dateLabel" destination="ygy-ns-JWq" id="8O8-lL-HpD"/>
-                                    <outlet property="descriptionLabel" destination="GE0-xf-idh" id="CQq-BK-zgA"/>
-                                    <outlet property="titleLabel" destination="B24-eg-39U" id="00I-bI-B99"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zxm-5r-feH" id="hZn-W0-OzF"/>
-                            <outlet property="delegate" destination="zxm-5r-feH" id="59X-wr-Mgx"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Credit History" id="CGI-dI-YwM"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GLR-8g-eqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1331" y="746"/>
-        </scene>
-        <!--Debits History Table View Controller - Debit History-->
+        <!--Detail Table View Controller - History-->
         <scene sceneID="UzL-7e-A9p">
             <objects>
-                <tableViewController id="wIB-Xh-bK5" customClass="DebitsHistoryTableViewController" sceneMemberID="viewController">
+                <tableViewController id="wIB-Xh-bK5" customClass="DetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="kiF-to-rFg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="HistoryItemTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="HistoryItemTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2H-gX-jzb" id="dwy-sO-RG2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opp-Qa-NEg">
@@ -359,7 +239,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="yyyy/mm/dd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0w-ET-ql9">
-                                            <rect key="frame" x="202" y="10" width="98" height="21"/>
+                                            <rect key="frame" x="182" y="10" width="98" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -377,6 +257,7 @@
                                     <outlet property="dateLabel" destination="W0w-ET-ql9" id="L8r-OG-fUp"/>
                                     <outlet property="descriptionLabel" destination="bDS-zm-Htr" id="SL1-cl-Yj7"/>
                                     <outlet property="titleLabel" destination="Opp-Qa-NEg" id="pGL-zT-4Qw"/>
+                                    <segue destination="mO1-tB-cqg" kind="push" identifier="edit" id="5q0-H5-X1C"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -385,11 +266,11 @@
                             <outlet property="delegate" destination="wIB-Xh-bK5" id="aYh-ix-4fb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Debit History" id="nDu-Lw-ICW"/>
+                    <navigationItem key="navigationItem" title="History" id="nDu-Lw-ICW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM9-mA-YEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="1107"/>
+            <point key="canvasLocation" x="1729" y="398"/>
         </scene>
         <!--History View Controller - History-->
         <scene sceneID="Gnv-Es-s2P">
@@ -441,9 +322,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrV-bh-Dcm">
-                                <rect key="frame" x="251" y="339" width="49" height="30"/>
+                                <rect key="frame" x="190" y="339" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="History">
+                                <state key="normal" title="Detailed History">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -451,13 +332,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-H9-euh">
-                                <rect key="frame" x="251" y="256" width="49" height="30"/>
+                                <rect key="frame" x="190" y="256" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="History">
+                                <state key="normal" title="Detailed History">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zxm-5r-feH" kind="push" identifier="creditHistory" id="qx2-NO-8ws"/>
+                                    <segue destination="wIB-Xh-bK5" kind="push" identifier="creditHistory" id="1vc-QS-EGP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="January, 2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uN8-GI-ctN">
@@ -498,7 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LB-dA-iY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="752"/>
+            <point key="canvasLocation" x="1285" y="398"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -506,4 +387,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="5q0-H5-X1C"/>
+        <segue reference="fbD-xZ-MnU"/>
+    </inferredMetricsTieBreakers>
 </document>

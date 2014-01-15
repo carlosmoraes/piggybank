@@ -10,9 +10,9 @@
 #import "HistoryItemTableViewCell.h"
 #import "Utilities.h"
 
-@interface DebitsHistoryTableViewController : UITableViewController
+@interface DetailTableViewController : UITableViewController
 
 @property (strong) NSMutableArray *debits;
-@property (nonatomic,strong) Utilities *utilities;
+@property (strong, nonatomic) Utilities *utilities;
 
 @end

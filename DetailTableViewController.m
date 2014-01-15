@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "DebitsHistoryTableViewController.h"
+#import "DetailTableViewController.h"
 
-@interface DebitsHistoryTableViewController ()
+@interface DetailTableViewController ()
 
 @end
 
-@implementation DebitsHistoryTableViewController
+@implementation DetailTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -111,7 +111,7 @@
         NSError *error;
         if (![context save:&error])
         {
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"sorry the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
         }else{
             [self.debits removeObjectAtIndex:indexPath.row];
@@ -119,9 +119,18 @@
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
+        // }
+}
+
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
 /*
@@ -138,18 +147,6 @@
  // Return NO if you do not want the item to be re-orderable.
  return YES;
  }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a story board-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
  */
 
 @end

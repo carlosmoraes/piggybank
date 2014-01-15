@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "AddDebitsViewController.h"
+#import "Movement.h"
 
-@interface AddDebitsViewController () <UITextFieldDelegate>
+@interface Movement () <UITextFieldDelegate>
 
 @end
 
-@implementation AddDebitsViewController
+@implementation Movement
 
 - (IBAction)save:(id)sender {
     
@@ -20,25 +20,21 @@
     NSDate *date = [NSDate date];
     
     // Create a new managed object
-    NSManagedObject *newDebit = [NSEntityDescription insertNewObjectForEntityForName:@"Debit" inManagedObjectContext:context];
+    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:self.movementType inManagedObjectContext:context];
     
     NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
-    [newDebit setValue:amount forKey:@"amount"];
-    [newDebit setValue:self.descriptionTextField.text forKey:@"desc"];
-    [newDebit setValue:date forKey:@"date"];
+    [managedObject setValue:amount forKey:@"amount"];
+    [managedObject setValue:self.descriptionTextField.text forKey:@"desc"];
+    [managedObject setValue:date forKey:@"date"];
     
     NSError *error = nil;
     // Save the object to persistent store
     if (![context save:&error]) {
-        NSLog(@"Erro ao salvar! %@ %@", error, [error localizedDescription]);
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the operation cannot be completed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
     }
     
-    // else {
-    //   NSLog(@"Salvou!");
-    // }
-    
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
