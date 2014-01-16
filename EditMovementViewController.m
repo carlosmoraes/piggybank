@@ -14,6 +14,11 @@
 
 @implementation EditMovementViewController
 
+- (IBAction)save:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,9 +36,10 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"Apareceu");
-    self.valueTextField.text = self.value;
-    self.descriptionTextField.text = self.description;
+    NSDecimalNumber *amount;
+    amount = [self.movement valueForKey:@"amount"];
+    self.valueTextField.text = [amount stringValue];
+    self.descriptionTextField.text = [self.movement valueForKey:@"desc"];
 }
 
 - (void)didReceiveMemoryWarning

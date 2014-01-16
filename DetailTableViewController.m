@@ -33,6 +33,14 @@
 {
     [super viewDidLoad];
     self.utilities = [[Utilities alloc] init];
+    
+    if([self.movementType  isEqual: @"Credit"])
+    {
+        self.movements = [[self.utilities credits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+    } else if([self.movementType  isEqual: @"Debit"])
+    {
+        self.movements  = [[self.utilities debits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -68,15 +76,14 @@
 {
     static NSString *CellIdentifier = @"Cell";
     DetailItemTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSManagedObject *credit = [self.movements objectAtIndex:indexPath.row];
-    
+    NSManagedObject *object = [self.movements objectAtIndex:indexPath.row];
     NSDecimalNumber *amount;
-    amount = [credit valueForKey:@"amount"];
+    amount = [object valueForKey:@"amount"];
     cell.titleLabel.text = [self.utilities decimalNumberAsString: amount];
     
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [credit valueForKey:@"desc"]];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [object valueForKey:@"desc"]];
     
-    NSDate *date = [credit valueForKey:@"date"];
+    NSDate *date = [object valueForKey:@"date"];
     NSString *dateString = [self.utilities dateToFortmat:date :0];
     cell.dateLabel.text = dateString;
     
@@ -136,9 +143,7 @@
         
         if (editMovementViewController)
         {
-            DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            editMovementViewController.value = cell.titleLabel.text;
-            editMovementViewController.description = cell.descriptionLabel.text;
+            editMovementViewController.movement =  [self.movements objectAtIndex:indexPath.row];
         }
     }
 }

@@ -13,7 +13,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (strong, nonatomic) NSString *value;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSObject *movement;
+@property (strong, nonatomic) Utilities *utilities;
+
 
 @end

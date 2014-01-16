@@ -75,16 +75,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([[segue identifier] isEqualToString:@"creditHistory"]) {
-        // CreditsHistoryTableViewController *creditHistoryUITableViewController = [segue destinationViewController];
-        // creditHistoryUITableViewController.credits = [self.utilities credits:self.currentMonth  byPeriod:self.nextMonth];
-        DetailTableViewController *historyUITableViewController = [segue destinationViewController];
-        historyUITableViewController.movements = [[self.utilities credits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+    if ([[segue identifier] isEqualToString:@"creditsHistory"]) {
+        DetailTableViewController *detailTableViewController = [segue destinationViewController];
+        detailTableViewController.movementType = @"Credit";
+        detailTableViewController.currentMonth = self.currentMonth;
+        detailTableViewController.nextMonth = self.nextMonth;
     }
     
-    if ([[segue identifier] isEqualToString:@"debitHistory"]) {
-        DetailTableViewController *historyUITableViewController = [segue destinationViewController];
-        historyUITableViewController.movements = [[self.utilities debits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+    if ([[segue identifier] isEqualToString:@"debitsHistory"]) {
+        DetailTableViewController *detailTableViewController = [segue destinationViewController];
+        detailTableViewController.movementType = @"Debit";
+        detailTableViewController.currentMonth = self.currentMonth;
+        detailTableViewController.nextMonth = self.nextMonth;
     }
 }
 

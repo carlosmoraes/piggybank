@@ -15,6 +15,9 @@
 @interface DetailTableViewController : UITableViewController
 
 @property (strong) NSMutableArray *movements;
+@property (strong) NSString *movementType;
+@property (strong) NSDate *currentMonth;
+@property (strong) NSDate *nextMonth;
 @property (strong, nonatomic) Utilities *utilities;
 
 @end
