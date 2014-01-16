@@ -75,14 +75,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([[segue identifier] isEqualToString:@"creditsHistory"]) {
+    if ([[segue identifier] isEqualToString:@"creditHistory"]) {
         DetailTableViewController *detailTableViewController = [segue destinationViewController];
         detailTableViewController.movementType = @"Credit";
         detailTableViewController.currentMonth = self.currentMonth;
         detailTableViewController.nextMonth = self.nextMonth;
     }
     
-    if ([[segue identifier] isEqualToString:@"debitsHistory"]) {
+    if ([[segue identifier] isEqualToString:@"debitHistory"]) {
         DetailTableViewController *detailTableViewController = [segue destinationViewController];
         detailTableViewController.movementType = @"Debit";
         detailTableViewController.currentMonth = self.currentMonth;
