@@ -170,12 +170,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"newCredit"]) {
-        Movement *movement = [segue destinationViewController];
+        NewMovement *movement = [segue destinationViewController];
         movement.movementType = @"Credit";
     }
     
     if ([[segue identifier] isEqualToString:@"newDebit"]) {
-        Movement *movement = [segue destinationViewController];
+        NewMovement *movement = [segue destinationViewController];
         movement.movementType = @"Debit";
     }
 }

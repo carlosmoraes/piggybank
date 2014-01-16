@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Movement.h"
+#import "NewMovement.h"
 #import "Utilities.h"
 
 @interface PiggyBankViewController : UIViewController

@@ -1,19 +1,17 @@
 //
-//  DebitViewController.h
+//  Movement.h
 //  Piggy Bank
 //
-//  Created by OZZE on 16/11/13.
-//  Copyright (c) 2013 The Mob Project. All rights reserved.
+//  Created by OZZE on 15/01/14.
+//  Copyright (c) 2014 The Mob Project. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Utilities.h"
+#import <Foundation/Foundation.h>
 
-@interface Movement : UIViewController
+@interface Movement : NSObject
 
-@property (strong, nonatomic) IBOutlet UITextField *valueTextField;
-@property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (strong, nonatomic) NSString *movementType;
-@property (strong, nonatomic) Utilities *utilities;
+@property (nonatomic, copy) NSString *value;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSDate *date;
 
 @end

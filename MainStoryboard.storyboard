@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="745" y="13"/>
         </scene>
-        <!--Movement - New-->
+        <!--New Movement - New-->
         <scene sceneID="o90-eT-bQD">
             <objects>
-                <viewController id="mO1-tB-cqg" customClass="Movement" sceneMemberID="viewController">
+                <viewController id="mO1-tB-cqg" customClass="NewMovement" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eu2-LF-HYg"/>
                         <viewControllerLayoutGuide type="bottom" id="6L4-jN-TKy"/>
@@ -225,8 +225,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="HistoryItemTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="70"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="o2H-gX-jzb" customClass="DetailItemTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2H-gX-jzb" id="dwy-sO-RG2">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
@@ -257,7 +257,7 @@
                                     <outlet property="dateLabel" destination="W0w-ET-ql9" id="L8r-OG-fUp"/>
                                     <outlet property="descriptionLabel" destination="bDS-zm-Htr" id="SL1-cl-Yj7"/>
                                     <outlet property="titleLabel" destination="Opp-Qa-NEg" id="pGL-zT-4Qw"/>
-                                    <segue destination="mO1-tB-cqg" kind="push" identifier="edit" id="5q0-H5-X1C"/>
+                                    <segue destination="eo1-38-TsS" kind="push" identifier="edit" id="c6V-QZ-oSr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -271,6 +271,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM9-mA-YEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1729" y="398"/>
+        </scene>
+        <!--Edit Movement View Controller - Edit-->
+        <scene sceneID="NLX-oQ-m1M">
+            <objects>
+                <viewController id="eo1-38-TsS" customClass="EditMovementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WSv-6k-82g"/>
+                        <viewControllerLayoutGuide type="bottom" id="bTh-2Q-m8Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N3p-HF-4zN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr3-dO-OCU">
+                                <rect key="frame" x="20" y="84" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZXj-74-iQM">
+                                <rect key="frame" x="20" y="113" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="mO1-tB-cqg" id="woi-2r-eDL"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Train tickets" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qSv-f8-bWu">
+                                <rect key="frame" x="20" y="193" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="mO1-tB-cqg" id="wa4-nq-ctt"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Short description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-Wl-JPg">
+                                <rect key="frame" x="20" y="164" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16o-UX-8zC">
+                                <rect key="frame" x="256" y="242" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="mO1-tB-cqg" eventType="touchUpInside" id="oew-CW-vMw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit" id="aSX-TD-vHG"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="qSv-f8-bWu" id="ges-Ff-awq"/>
+                        <outlet property="valueTextField" destination="ZXj-74-iQM" id="l0T-qi-HjI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A49-pp-snE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2269" y="716"/>
         </scene>
         <!--History View Controller - History-->
         <scene sceneID="Gnv-Es-s2P">
@@ -388,7 +454,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5q0-H5-X1C"/>
+        <segue reference="gpT-nq-7Wx"/>
         <segue reference="fbD-xZ-MnU"/>
     </inferredMetricsTieBreakers>
 </document>

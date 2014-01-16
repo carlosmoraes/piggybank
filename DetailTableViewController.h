@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HistoryItemTableViewCell.h"
+#import "DetailItemTableViewCell.h"
+#import "EditMovementViewController.h"
+#import "Movement.h"
 #import "Utilities.h"
 
 @interface DetailTableViewController : UITableViewController
 
-@property (strong) NSMutableArray *debits;
+@property (strong) NSMutableArray *movements;
 @property (strong, nonatomic) Utilities *utilities;
 
 @end

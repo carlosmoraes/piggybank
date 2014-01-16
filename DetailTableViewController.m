@@ -61,14 +61,14 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     // return 0;
-    return self.debits.count;
+    return self.movements.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    HistoryItemTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSManagedObject *credit = [self.debits objectAtIndex:indexPath.row];
+    DetailItemTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSManagedObject *credit = [self.movements objectAtIndex:indexPath.row];
     
     NSDecimalNumber *amount;
     amount = [credit valueForKey:@"amount"];
@@ -104,7 +104,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObject *item = [self.debits objectAtIndex:indexPath.row];
+        NSManagedObject *item = [self.movements objectAtIndex:indexPath.row];
         NSManagedObjectContext *context = [self.utilities managedObjectContext];
         [context deleteObject:item];
         
@@ -114,7 +114,7 @@
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
         }else{
-            [self.debits removeObjectAtIndex:indexPath.row];
+            [self.movements removeObjectAtIndex:indexPath.row];
         }
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -129,8 +129,18 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"edit"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        EditMovementViewController *editMovementViewController =  segue.destinationViewController;
+        
+        if (editMovementViewController)
+        {
+            DetailItemTableViewCell *cell = (DetailItemTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            editMovementViewController.value = cell.titleLabel.text;
+            editMovementViewController.description = cell.descriptionLabel.text;
+        }
+    }
 }
 
 /*
