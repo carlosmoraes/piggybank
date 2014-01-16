@@ -16,17 +16,16 @@
 
 - (IBAction)save:(id)sender {
     NSManagedObjectContext *moc = [self.utilities managedObjectContext];
-    NSManagedObject *originalMovement = (NSManagedObject *) self.movement;
-    NSManagedObjectID *originalMovementId = [originalMovement objectID];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objectID = %@)", originalMovementId];
+    NSManagedObjectID *movementId = [self.movement objectID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objectID = %@)", movementId];
     NSArray *result = [[self.utilities getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
     
     if (result.count == 1)
     {
-        NSManagedObject *newMovement = [result objectAtIndex:0];
+        NSManagedObject *updatedMovement = [result objectAtIndex:0];
         NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
-        [newMovement setValue:amount forKey:@"amount"];
-        [newMovement setValue:self.descriptionTextField.text forKey:@"desc"];
+        [updatedMovement setValue:amount forKey:@"amount"];
+        [updatedMovement setValue:self.descriptionTextField.text forKey:@"desc"];
 
         NSError *error = nil;
         
@@ -52,13 +51,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.utilities = [[Utilities alloc] init];
+    self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
 	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    self.utilities = [[Utilities alloc] init];
     NSDecimalNumber *amount;
     amount = [self.movement valueForKey:@"amount"];
     self.valueTextField.text = [amount stringValue];

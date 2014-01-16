@@ -12,17 +12,17 @@
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-    NSManagedObjectContext *context = nil;
+    NSManagedObjectContext *moc = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
     if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
+        moc = [delegate managedObjectContext];
     }
-    return context;
+    return moc;
 }
 
 - (NSMutableArray *)getObjectsFromStore:(int) store
 {
-    NSMutableArray *objects;
+    NSMutableArray *movements;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest;
     
@@ -30,50 +30,50 @@
     {
         case 0:
             fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Credit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            movements = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
             break;
         case 1:
             fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Debit"];
-            objects = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+            movements = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
             break;
         default:
             NSLog (@"Invalid entity");
             break;
     }
     
-    return objects;
+    return movements;
 }
 
 - (NSArray *)credits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
 {
     NSPredicate *predicate;
-    NSArray *objects;
+    NSArray *movements;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    movements = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
     
-    return objects;
+    return movements;
 }
 - (NSArray *)debits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
 {
     NSPredicate *predicate;
-    NSArray *objects;
+    NSArray *movements;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
+    movements = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
     
-    return objects;
+    return movements;
 }
 
 - (NSDecimalNumber *)sumCredits:(NSDate *)initDate byPeriod:(NSDate *) finalDate
 {
     NSDecimalNumber *sum;
     NSPredicate *predicate;
-    NSArray *objects;
+    NSArray *movements;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
-    sum = [objects valueForKeyPath:@"@sum.amount"];
+    movements = [[self getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    sum = [movements valueForKeyPath:@"@sum.amount"];
     
     return sum;
 }
@@ -82,11 +82,11 @@
 {
     NSDecimalNumber *sum;
     NSPredicate *predicate;
-    NSArray *objects;
+    NSArray *movements;
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initDate, finalDate];
-    objects = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
-    sum = [objects valueForKeyPath:@"@sum.amount"];
+    movements = [[self getObjectsFromStore:1] filteredArrayUsingPredicate:predicate];
+    sum = [movements valueForKeyPath:@"@sum.amount"];
     
     return sum;
 }

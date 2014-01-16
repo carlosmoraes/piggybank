@@ -41,8 +41,8 @@
 {
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
-    if (textField.tag == 1){
-        if (textField.tag == 1){
+    if (textField.tag == 1)
+    {
             NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
             
             if ([arrayOfString count] > 2 )
@@ -52,14 +52,7 @@
                 return NO;
         }
         
-        if (textField.tag == 2){
-            
-            if ([newString length] > 16)
-                return NO;
-        }
-        
         return YES;
-    }
     
     if (textField.tag == 2){
         if ([newString length] > 16)
