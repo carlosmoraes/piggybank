@@ -1,5 +1,5 @@
 //
-//  History.m
+//  HistoryViewController.m
 //  Piggy Bank
 //
 //  Created by OZZE on 11/01/14.
@@ -39,20 +39,20 @@
 {
     [super viewDidAppear:animated];
     
-    Utilities *util = self.utilities;
-    self.monthLabel.text = self.monthLabel.text = [util dateToFortmat:self.currentMonth :1];
+    TPBOperations *util = self.operations;
+    self.monthLabel.text = self.monthLabel.text = [util stringFromDate:self.currentMonth toFormat:1];
     
-    NSDecimalNumber *monthCredits;
-    monthCredits = [util sumCredits:self.currentMonth byPeriod:self.nextMonth];
-    self.creditLabel.text = [util decimalNumberAsString: monthCredits];
+    NSDecimalNumber *totalMonthCredits;
+    totalMonthCredits = [util sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.creditLabel.text = [util stringByDecimalNumber: totalMonthCredits];
     
-    NSDecimalNumber *monthDebits;
-    monthDebits = [util sumDebits:self.currentMonth byPeriod:self.nextMonth];
-    self.debitLabel.text = [util decimalNumberAsString: monthDebits];
+    NSDecimalNumber *totalMonthDebits;
+    totalMonthDebits = [util sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.debitLabel.text = [util stringByDecimalNumber: totalMonthDebits];
     
     NSDecimalNumber *balance;
-    balance = [util calculateBalance:self.currentMonth byPeriod:self.nextMonth];
-    self.balanceLabel.text = [util decimalNumberAsString: balance];
+    balance = [util calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
+    self.balanceLabel.text = [util stringByDecimalNumber: balance];
 }
 
 -(void) changeMonth:(NSInteger)byAmount // Change month
@@ -76,17 +76,17 @@
 {
     
     if ([[segue identifier] isEqualToString:@"creditHistory"]) {
-        DetailTableViewController *detailTableViewController = [segue destinationViewController];
-        detailTableViewController.movementType = @"Credit";
-        detailTableViewController.currentMonth = self.currentMonth;
-        detailTableViewController.nextMonth = self.nextMonth;
+        DetailTableViewController *dtvc = [segue destinationViewController];
+        dtvc.movementType = @"Credit";
+        dtvc.currentMonth = self.currentMonth;
+        dtvc.nextMonth = self.nextMonth;
     }
     
     if ([[segue identifier] isEqualToString:@"debitHistory"]) {
-        DetailTableViewController *detailTableViewController = [segue destinationViewController];
-        detailTableViewController.movementType = @"Debit";
-        detailTableViewController.currentMonth = self.currentMonth;
-        detailTableViewController.nextMonth = self.nextMonth;
+        DetailTableViewController *dtvc = [segue destinationViewController];
+        dtvc.movementType = @"Debit";
+        dtvc.currentMonth = self.currentMonth;
+        dtvc.nextMonth = self.nextMonth;
     }
 }
 
@@ -95,7 +95,7 @@
     [super viewDidLoad];
     self.currentMonth = [NSDate date];
     [self changeMonth:0];
-    self.utilities = [[Utilities alloc] init];
+    self.operations = [[TPBOperations alloc] init];
 }
 
 - (void)didReceiveMemoryWarning

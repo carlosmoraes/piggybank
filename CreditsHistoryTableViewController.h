@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Utilities.h"
+#import "TPBOperations.h"
 
 @interface CreditsHistoryTableViewController : UITableViewController
 
 @property (strong) NSMutableArray *credits;
-@property (nonatomic,strong) Utilities *utilities;
+@property (nonatomic,strong) TPBOperations *operations;
 
 @end

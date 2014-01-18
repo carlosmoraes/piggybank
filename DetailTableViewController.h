@@ -1,5 +1,5 @@
 //
-//  DebitHistoryUITableViewController.h
+//  DetailTableViewController.h
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DetailItemTableViewCell.h"
 #import "EditMovementViewController.h"
-#import "Movement.h"
-#import "Utilities.h"
+#import "TPBOperations.h"
 
 @interface DetailTableViewController : UITableViewController
 
-@property (strong) NSMutableArray *movements;
-@property (strong) NSString *movementType;
 @property (strong) NSDate *currentMonth;
 @property (strong) NSDate *nextMonth;
-@property (strong, nonatomic) Utilities *utilities;
+@property (strong) NSMutableArray *movements;
+@property (strong) NSString *movementType;
+@property (strong, nonatomic) TPBOperations *operations;
 
 @end

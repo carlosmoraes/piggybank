@@ -1,34 +1,31 @@
 //
-//  DebitViewController.m
+//  NewMovementViewController.m
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
 //  Copyright (c) 2013 The Mob Project. All rights reserved.
 //
 
-#import "NewMovement.h"
+#import "NewMovementViewController.h"
 
-@interface NewMovement () <UITextFieldDelegate>
+@interface NewMovementViewController () <UITextFieldDelegate>
 
 @end
 
-@implementation NewMovement
+@implementation NewMovementViewController
 
-- (IBAction)save:(id)sender {
-    
-    NSManagedObjectContext *context = [self.utilities managedObjectContext];
-    NSDate *date = [NSDate date];
-    
-    // Create a new managed object
+- (IBAction)save:(id)sender
+{
+    NSManagedObjectContext *context = [self.operations managedObjectContext];
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:self.movementType inManagedObjectContext:context];
-    
+    NSDate *date = [NSDate date];
     NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
+    
     [managedObject setValue:amount forKey:@"amount"];
     [managedObject setValue:self.descriptionTextField.text forKey:@"desc"];
     [managedObject setValue:date forKey:@"date"];
     
     NSError *error = nil;
-    // Save the object to persistent store
     if (![context save:&error]) {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the operation cannot be completed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
@@ -74,9 +71,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.utilities = [[Utilities alloc] init];
+	self.operations = [[TPBOperations alloc] init];
     self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
-    
 }
 
 - (void)didReceiveMemoryWarning

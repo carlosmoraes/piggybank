@@ -15,10 +15,10 @@
 @implementation EditMovementViewController
 
 - (IBAction)save:(id)sender {
-    NSManagedObjectContext *moc = [self.utilities managedObjectContext];
+    NSManagedObjectContext *moc = [self.operations managedObjectContext];
     NSManagedObjectID *movementId = [self.movement objectID];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objectID = %@)", movementId];
-    NSArray *result = [[self.utilities getObjectsFromStore:0] filteredArrayUsingPredicate:predicate];
+    NSArray *result = [[self.operations mutableArrayOfMovementsByType:0] filteredArrayUsingPredicate:predicate];
     
     if (result.count == 1)
     {
@@ -51,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.utilities = [[Utilities alloc] init];
+    self.operations = [[TPBOperations alloc] init];
     self.valueTextField.keyboardType=UIKeyboardTypeDecimalPad;
 	// Do any additional setup after loading the view.
 }

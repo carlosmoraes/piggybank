@@ -7,19 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewMovement.h"
-#import "Utilities.h"
+#import "NewMovementViewController.h"
+#import "TPBOperations.h"
 
 @interface PiggyBankViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *monthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *balanceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *previousBalanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *creditLabel;
 @property (strong, nonatomic) IBOutlet UILabel *debitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *monthLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lastMonthBalanceLabel;
 @property (strong) NSDate *currentMonth;
 @property (strong) NSDate *nextMonth;
-@property (strong) NSDate *previousMonth;
-@property (strong, nonatomic) Utilities *utilities;
+@property (strong) NSDate *lastMonth;
+@property (strong, nonatomic) TPBOperations *operations;
 
 @end

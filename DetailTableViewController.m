@@ -1,5 +1,5 @@
 //
-//  DebitHistoryUITableViewController.m
+//  DetailTableViewController.m
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
@@ -32,14 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.utilities = [[Utilities alloc] init];
+    self.operations = [[TPBOperations alloc] init];
     
     if([self.movementType  isEqual: @"Credit"])
     {
-        self.movements = [[self.utilities credits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+        self.movements = [[self.operations arrayOfCreditsFromDate:self.currentMonth  toDate:self.nextMonth] mutableCopy];
     } else if([self.movementType  isEqual: @"Debit"])
     {
-        self.movements  = [[self.utilities debits:self.currentMonth  byPeriod:self.nextMonth] mutableCopy];
+        self.movements  = [[self.operations arrayOfDebitsFromDate:self.currentMonth  toDate:self.nextMonth] mutableCopy];
     }
 
     // Uncomment the following line to preserve selection between presentations.
@@ -79,12 +79,12 @@
     NSManagedObject *object = [self.movements objectAtIndex:indexPath.row];
     NSDecimalNumber *amount;
     amount = [object valueForKey:@"amount"];
-    cell.titleLabel.text = [self.utilities decimalNumberAsString: amount];
+    cell.amountLabel.text = [self.operations stringByDecimalNumber: amount];
     
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [object valueForKey:@"desc"]];
     
     NSDate *date = [object valueForKey:@"date"];
-    NSString *dateString = [self.utilities dateToFortmat:date :0];
+    NSString *dateString = [self.operations stringFromDate:date toFormat:0];
     cell.dateLabel.text = dateString;
     
     return cell;
@@ -112,7 +112,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObject *item = [self.movements objectAtIndex:indexPath.row];
-        NSManagedObjectContext *context = [self.utilities managedObjectContext];
+        NSManagedObjectContext *context = [self.operations managedObjectContext];
         [context deleteObject:item];
         
         NSError *error;
@@ -139,11 +139,11 @@
     if ([[segue identifier] isEqualToString:@"edit"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        EditMovementViewController *editMovementViewController =  segue.destinationViewController;
+        EditMovementViewController *emvc =  segue.destinationViewController;
         
-        if (editMovementViewController)
+        if (emvc)
         {
-            editMovementViewController.movement =  [self.movements objectAtIndex:indexPath.row];
+            emvc.movement =  [self.movements objectAtIndex:indexPath.row];
         }
     }
 }

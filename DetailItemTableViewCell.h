@@ -1,5 +1,5 @@
 //
-//  HistoryCellUITableViewCell.h
+//  DetailItemTableViewCell.h
 //  Piggy Bank
 //
 //  Created by OZZE on 24/11/13.
@@ -10,8 +10,9 @@
 
 @interface DetailItemTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *amountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
+
 
 @end

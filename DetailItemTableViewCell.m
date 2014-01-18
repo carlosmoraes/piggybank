@@ -1,5 +1,5 @@
 //
-//  HistoryCellUITableViewCell.m
+//  DetailItemTableViewCell.m
 //  Piggy Bank
 //
 //  Created by OZZE on 24/11/13.

@@ -120,18 +120,18 @@
                         <outlet property="balanceLabel" destination="sMF-Fn-Xwq" id="0Gf-I0-EmP"/>
                         <outlet property="creditLabel" destination="q1A-Gp-1P8" id="u7f-BI-fTU"/>
                         <outlet property="debitLabel" destination="hAF-y8-vYf" id="Noz-MB-0Ff"/>
+                        <outlet property="lastMonthBalanceLabel" destination="RzT-Rh-idn" id="axT-KM-Pb4"/>
                         <outlet property="monthLabel" destination="ADa-4p-ThB" id="PPg-yF-nWd"/>
-                        <outlet property="previousBalanceLabel" destination="RzT-Rh-idn" id="0hf-Y8-QGo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6e-5O-whb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="745" y="13"/>
         </scene>
-        <!--New Movement - New-->
+        <!--New Movement View Controller - New-->
         <scene sceneID="o90-eT-bQD">
             <objects>
-                <viewController id="mO1-tB-cqg" customClass="NewMovement" sceneMemberID="viewController">
+                <viewController id="mO1-tB-cqg" customClass="NewMovementViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a16-Wq-jwS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -246,9 +246,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="amountLabel" destination="Opp-Qa-NEg" id="Eb1-O5-YcM"/>
                                     <outlet property="dateLabel" destination="W0w-ET-ql9" id="L8r-OG-fUp"/>
                                     <outlet property="descriptionLabel" destination="bDS-zm-Htr" id="SL1-cl-Yj7"/>
-                                    <outlet property="titleLabel" destination="Opp-Qa-NEg" id="pGL-zT-4Qw"/>
                                     <segue destination="eo1-38-TsS" kind="push" identifier="edit" id="c6V-QZ-oSr"/>
                                 </connections>
                             </tableViewCell>

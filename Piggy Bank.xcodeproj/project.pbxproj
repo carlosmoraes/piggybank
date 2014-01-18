@@ -26,9 +26,9 @@
 		4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20574F1836325A00D69588 /* PiggyBankViewController.m */; };
 		4B2FFF5D1881A342009EAE40 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2FFF5C1881A342009EAE40 /* HistoryViewController.m */; };
 		4B40B8DD18424BAA005C47E0 /* DetailItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B40B8DC18424BAA005C47E0 /* DetailItemTableViewCell.m */; };
-		4B4BE6531882BE4A00BDF5C1 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4BE6521882BE4A00BDF5C1 /* Utilities.m */; };
+		4B4BE6531882BE4A00BDF5C1 /* TPBOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4BE6521882BE4A00BDF5C1 /* TPBOperations.m */; };
 		4B515A88188615F9003401C4 /* EditMovementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B515A87188615F9003401C4 /* EditMovementViewController.m */; };
-		4B5F747A1837A1BC0058844C /* NewMovement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74791837A1BC0058844C /* NewMovement.m */; };
+		4B5F747A1837A1BC0058844C /* NewMovementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74791837A1BC0058844C /* NewMovementViewController.m */; };
 		4B5F74831837DA160058844C /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F74821837DA160058844C /* DetailTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -68,12 +68,12 @@
 		4B2FFF5C1881A342009EAE40 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		4B40B8DB18424BAA005C47E0 /* DetailItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailItemTableViewCell.h; sourceTree = "<group>"; };
 		4B40B8DC18424BAA005C47E0 /* DetailItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailItemTableViewCell.m; sourceTree = "<group>"; };
-		4B4BE6511882BE4A00BDF5C1 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		4B4BE6521882BE4A00BDF5C1 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		4B4BE6511882BE4A00BDF5C1 /* TPBOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPBOperations.h; sourceTree = "<group>"; };
+		4B4BE6521882BE4A00BDF5C1 /* TPBOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPBOperations.m; sourceTree = "<group>"; };
 		4B515A86188615F9003401C4 /* EditMovementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMovementViewController.h; sourceTree = "<group>"; };
 		4B515A87188615F9003401C4 /* EditMovementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMovementViewController.m; sourceTree = "<group>"; };
-		4B5F74781837A1BC0058844C /* NewMovement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMovement.h; sourceTree = "<group>"; };
-		4B5F74791837A1BC0058844C /* NewMovement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMovement.m; sourceTree = "<group>"; };
+		4B5F74781837A1BC0058844C /* NewMovementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMovementViewController.h; sourceTree = "<group>"; };
+		4B5F74791837A1BC0058844C /* NewMovementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMovementViewController.m; sourceTree = "<group>"; };
 		4B5F74811837DA160058844C /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		4B5F74821837DA160058844C /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,8 +107,8 @@
 		4B20570B183628FE00D69588 = {
 			isa = PBXGroup;
 			children = (
-				4B5F74781837A1BC0058844C /* NewMovement.h */,
-				4B5F74791837A1BC0058844C /* NewMovement.m */,
+				4B5F74781837A1BC0058844C /* NewMovementViewController.h */,
+				4B5F74791837A1BC0058844C /* NewMovementViewController.m */,
 				4B40B8DB18424BAA005C47E0 /* DetailItemTableViewCell.h */,
 				4B40B8DC18424BAA005C47E0 /* DetailItemTableViewCell.m */,
 				4B5F74811837DA160058844C /* DetailTableViewController.h */,
@@ -124,8 +124,8 @@
 				4B20574E1836325A00D69588 /* PiggyBankViewController.h */,
 				4B20574F1836325A00D69588 /* PiggyBankViewController.m */,
 				4B205715183628FE00D69588 /* Products */,
-				4B4BE6511882BE4A00BDF5C1 /* Utilities.h */,
-				4B4BE6521882BE4A00BDF5C1 /* Utilities.m */,
+				4B4BE6511882BE4A00BDF5C1 /* TPBOperations.h */,
+				4B4BE6521882BE4A00BDF5C1 /* TPBOperations.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,13 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5F747A1837A1BC0058844C /* NewMovement.m in Sources */,
+				4B5F747A1837A1BC0058844C /* NewMovementViewController.m in Sources */,
 				4B515A88188615F9003401C4 /* EditMovementViewController.m in Sources */,
 				4B20572A183628FE00D69588 /* AppDelegate.m in Sources */,
 				4B205726183628FE00D69588 /* main.m in Sources */,
 				4B20572D183628FE00D69588 /* Piggy_Bank.xcdatamodeld in Sources */,
 				4B5F74831837DA160058844C /* DetailTableViewController.m in Sources */,
-				4B4BE6531882BE4A00BDF5C1 /* Utilities.m in Sources */,
+				4B4BE6531882BE4A00BDF5C1 /* TPBOperations.m in Sources */,
 				4B2057501836325A00D69588 /* PiggyBankViewController.m in Sources */,
 				4B2FFF5D1881A342009EAE40 /* HistoryViewController.m in Sources */,
 				4B40B8DD18424BAA005C47E0 /* DetailItemTableViewCell.m in Sources */,

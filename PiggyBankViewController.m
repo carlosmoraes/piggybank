@@ -16,7 +16,7 @@
 
 - (IBAction)reset:(id)sender // Reset all stored data
 {
-    NSManagedObjectContext *context = [self.utilities managedObjectContext];
+    NSManagedObjectContext *context = [self.operations managedObjectContext];
     NSFetchRequest *fetchRequest;
     NSArray *objects;
     NSError *error;
@@ -40,7 +40,7 @@
 
 - (IBAction)populate:(id)sender
 {
-    NSManagedObjectContext *context = [self.utilities managedObjectContext];
+    NSManagedObjectContext *context = [self.operations managedObjectContext];
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"MM/dd/yyyy"];
     
@@ -131,24 +131,24 @@
     [super viewDidAppear:animated];
     [self updateCurrentMonth];
     
-    Utilities *util = self.utilities;
+    TPBOperations *util = self.operations;
     NSDate *now = [NSDate date];
-    self.monthLabel.text = self.monthLabel.text = [util dateToFortmat:now :1];
-    NSDecimalNumber *monthCredits;
-    monthCredits = [util sumCredits:self.currentMonth byPeriod:self.nextMonth];
-    self.creditLabel.text = [util decimalNumberAsString: monthCredits];
+    self.monthLabel.text = self.monthLabel.text = [util stringFromDate:now toFormat:1];
+    NSDecimalNumber *totalMonthCredits;
+    totalMonthCredits = [util sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.creditLabel.text = [util stringByDecimalNumber: totalMonthCredits];
     
-    NSDecimalNumber *monthDebits;
-    monthDebits = [util sumDebits:self.currentMonth byPeriod:self.nextMonth];
-    self.debitLabel.text = [util decimalNumberAsString: monthDebits];
+    NSDecimalNumber *totalMonthDebits;
+    totalMonthDebits = [util sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.debitLabel.text = [util stringByDecimalNumber: totalMonthDebits];
     
     NSDecimalNumber *balance;
-    balance = [util calculateBalance:self.currentMonth byPeriod:self.nextMonth];
-    self.balanceLabel.text = [util decimalNumberAsString: balance];
+    balance = [util calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
+    self.balanceLabel.text = [util stringByDecimalNumber: balance];
     
-    NSDecimalNumber *previousBalance;
-    previousBalance = [util  calculateBalance:self.previousMonth byPeriod:self.currentMonth];
-    self.previousBalanceLabel.text = [util decimalNumberAsString: previousBalance];
+    NSDecimalNumber *lastMonthBalance;
+    lastMonthBalance = [util  calculateBalanceFromDate:self.lastMonth toDate:self.currentMonth];
+    self.lastMonthBalanceLabel.text = [util stringByDecimalNumber: lastMonthBalance];
 }
 
 -(void)updateCurrentMonth
@@ -164,26 +164,26 @@
     self.nextMonth = [calendar dateByAddingComponents:oneMonth toDate:self.currentMonth options:0];
     
     [oneMonth setMonth:-1];
-    self.previousMonth = [calendar dateByAddingComponents:oneMonth toDate:self.currentMonth options:0];
+    self.lastMonth = [calendar dateByAddingComponents:oneMonth toDate:self.currentMonth options:0];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"newCredit"]) {
-        NewMovement *movement = [segue destinationViewController];
-        movement.movementType = @"Credit";
+        NewMovementViewController *nmvc = [segue destinationViewController];
+        nmvc.movementType = @"Credit";
     }
     
     if ([[segue identifier] isEqualToString:@"newDebit"]) {
-        NewMovement *movement = [segue destinationViewController];
-        movement.movementType = @"Debit";
+        NewMovementViewController *nmvc = [segue destinationViewController];
+        nmvc.movementType = @"Debit";
     }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.utilities = [[Utilities alloc] init];
+    self.operations = [[TPBOperations alloc] init];
 }
 
 - (void)didReceiveMemoryWarning

@@ -1,5 +1,5 @@
 //
-//  DebitViewController.h
+//  NewMovementViewController.h
 //  Piggy Bank
 //
 //  Created by OZZE on 16/11/13.
@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Utilities.h"
+#import "TPBOperations.h"
 
-@interface NewMovement : UIViewController
+@interface NewMovementViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *valueTextField;
 @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (strong, nonatomic) NSString *movementType;
-@property (strong, nonatomic) Utilities *utilities;
+@property (strong, nonatomic) TPBOperations *operations;
 
 @end
