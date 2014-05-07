@@ -39,42 +39,41 @@
 {
     [super viewDidAppear:animated];
     
-    TPBOperations *util = self.operations;
-    self.monthLabel.text = self.monthLabel.text = [util stringFromDate:self.currentMonth toFormat:1];
+    self.monthLabel.text = self.monthLabel.text = [self.operations stringFromDate:self.currentMonth toFormat:1];
     
-    NSDecimalNumber *totalMonthCredits;
-    totalMonthCredits = [util sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
-    self.creditLabel.text = [util stringByDecimalNumber: totalMonthCredits];
+    NSDecimalNumber *monthCredits;
+    monthCredits = [self.operations sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.creditLabel.text = [self.operations stringByDecimalNumber: monthCredits];
     
-    NSDecimalNumber *totalMonthDebits;
-    totalMonthDebits = [util sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
-    self.debitLabel.text = [util stringByDecimalNumber: totalMonthDebits];
+    NSDecimalNumber *monthDebits;
+    monthDebits = [self.operations sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.debitLabel.text = [self.operations stringByDecimalNumber: monthDebits];
     
     NSDecimalNumber *balance;
-    balance = [util calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
-    self.balanceLabel.text = [util stringByDecimalNumber: balance];
+    balance = [self.operations calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
+    self.balanceLabel.text = [self.operations stringByDecimalNumber: balance];
 }
 
--(void) changeMonth:(NSInteger)byAmount // Change month
+-(void) changeMonth: (NSInteger)amount
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self.currentMonth];
     [dateComponents setDay:1];
-    NSDate *oldDate = [calendar dateFromComponents:dateComponents];
-    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
-    [oneMonth setMonth:byAmount];
-    NSDate *newDate = [calendar dateByAddingComponents:oneMonth toDate:oldDate options:0];
-    self.currentMonth = newDate;
+    NSDate *oldMonth = [calendar dateFromComponents:dateComponents];
     
-    // Set the beggining of following month for Predicate
+    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
+    [oneMonth setMonth:amount];
+    NSDate *newMonth = [calendar dateByAddingComponents:oneMonth toDate:oldMonth options:0];
+    
+    self.currentMonth = newMonth;
     [oneMonth setMonth:1];
-    NSDate *beginningOfFollowingMonth = [calendar dateByAddingComponents:oneMonth toDate:newDate options:0];
-    self.nextMonth = beginningOfFollowingMonth;
+    
+    NSDate *nextMonth = [calendar dateByAddingComponents:oneMonth toDate:newMonth options:0];
+    self.nextMonth = nextMonth;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if ([[segue identifier] isEqualToString:@"creditHistory"]) {
         DetailTableViewController *dtvc = [segue destinationViewController];
         dtvc.movementType = @"Credit";

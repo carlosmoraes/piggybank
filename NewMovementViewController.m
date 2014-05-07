@@ -16,17 +16,17 @@
 
 - (IBAction)save:(id)sender
 {
-    NSManagedObjectContext *context = [self.operations managedObjectContext];
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:self.movementType inManagedObjectContext:context];
+    NSManagedObjectContext *moc = [self.operations managedObjectContext];
+    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:self.movementType inManagedObjectContext:moc];
     NSDate *date = [NSDate date];
-    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
+    NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
     
-    [managedObject setValue:amount forKey:@"amount"];
+    [managedObject setValue:value forKey:@"value"];
     [managedObject setValue:self.descriptionTextField.text forKey:@"desc"];
     [managedObject setValue:date forKey:@"date"];
     
     NSError *error = nil;
-    if (![context save:&error]) {
+    if (![moc save:&error]) {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the operation cannot be completed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
     }
@@ -40,14 +40,14 @@
     
     if (textField.tag == 1)
     {
-            NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
+        NSArray  *arrayOfString = [newString componentsSeparatedByString:@"."];
             
-            if ([arrayOfString count] > 2 )
-                return NO;
+        if ([arrayOfString count] > 2 )
+            return NO;
             
-            if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
-                return NO;
-        }
+        if (([arrayOfString count] == 2) && ([arrayOfString[1] length] > 2) )
+            return NO;
+    }
         
         return YES;
     
@@ -80,5 +80,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

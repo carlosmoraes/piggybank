@@ -76,16 +76,16 @@
 {
     static NSString *CellIdentifier = @"Cell";
     DetailItemTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSManagedObject *object = [self.movements objectAtIndex:indexPath.row];
-    NSDecimalNumber *amount;
-    amount = [object valueForKey:@"amount"];
-    cell.amountLabel.text = [self.operations stringByDecimalNumber: amount];
+    NSManagedObject *movement = [self.movements objectAtIndex:indexPath.row];
+    NSDecimalNumber *value;
+    value = [movement valueForKey:@"value"];
+    cell.valueLabel.text = [self.operations stringByDecimalNumber: value];
     
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [object valueForKey:@"desc"]];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@", [movement valueForKey:@"desc"]];
     
-    NSDate *date = [object valueForKey:@"date"];
-    NSString *dateString = [self.operations stringFromDate:date toFormat:0];
-    cell.dateLabel.text = dateString;
+    NSDate *date = [movement valueForKey:@"date"];
+    NSString *stringDate = [self.operations stringFromDate:date toFormat:0];
+    cell.dateLabel.text = stringDate;
     
     return cell;
     
@@ -111,12 +111,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObject *item = [self.movements objectAtIndex:indexPath.row];
-        NSManagedObjectContext *context = [self.operations managedObjectContext];
-        [context deleteObject:item];
+        NSManagedObject *movement = [self.movements objectAtIndex:indexPath.row];
+        NSManagedObjectContext *moc = [self.operations managedObjectContext];
+        [moc deleteObject:movement];
         
         NSError *error;
-        if (![context save:&error])
+        if (![moc save:&error])
         {
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the item cannot be deleted" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
@@ -126,9 +126,6 @@
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-        // else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        // }
 }
 
 #pragma mark - Navigation
@@ -144,6 +141,7 @@
         if (emvc)
         {
             emvc.movement =  [self.movements objectAtIndex:indexPath.row];
+            emvc.movementType = self.movementType;
         }
     }
 }

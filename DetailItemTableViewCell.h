@@ -10,7 +10,7 @@
 
 @interface DetailItemTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *amountLabel;
+@property (nonatomic, weak) IBOutlet UILabel *valueLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
 

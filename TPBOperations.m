@@ -108,8 +108,8 @@
 
     credits = [self mutableArrayOfMovementsByType:0];
     debits = [self mutableArrayOfMovementsByType:1];
-    totalCredits = [credits valueForKeyPath:@"@sum.amount"];
-    totalDebits = [debits valueForKeyPath:@"@sum.amount"];
+    totalCredits = [credits valueForKeyPath:@"@sum.value"];
+    totalDebits = [debits valueForKeyPath:@"@sum.value"];
     balance = [totalCredits decimalNumberBySubtracting:totalDebits];
     return balance;
 }
@@ -126,8 +126,8 @@
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initialDate, finalDate];
     credits = [[self mutableArrayOfMovementsByType:0] filteredArrayUsingPredicate:predicate];
     debits = [[self mutableArrayOfMovementsByType:1] filteredArrayUsingPredicate:predicate];
-    totalCredits = [credits valueForKeyPath:@"@sum.amount"];
-    totalDebits = [debits valueForKeyPath:@"@sum.amount"];
+    totalCredits = [credits valueForKeyPath:@"@sum.value"];
+    totalDebits = [debits valueForKeyPath:@"@sum.value"];
     balance = [totalCredits decimalNumberBySubtracting:totalDebits];
     
     return balance;
@@ -141,7 +141,7 @@
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initialDate, finalDate];
     movements = [[self mutableArrayOfMovementsByType:0] filteredArrayUsingPredicate:predicate];
-    sum = [movements valueForKeyPath:@"@sum.amount"];
+    sum = [movements valueForKeyPath:@"@sum.value"];
     
     return sum;
 }
@@ -154,7 +154,7 @@
     
     predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", initialDate, finalDate];
     movements = [[self mutableArrayOfMovementsByType:1] filteredArrayUsingPredicate:predicate];
-    sum = [movements valueForKeyPath:@"@sum.amount"];
+    sum = [movements valueForKeyPath:@"@sum.value"];
     
     return sum;
 }

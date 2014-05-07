@@ -131,24 +131,23 @@
     [super viewDidAppear:animated];
     [self updateCurrentMonth];
     
-    TPBOperations *util = self.operations;
     NSDate *now = [NSDate date];
-    self.monthLabel.text = self.monthLabel.text = [util stringFromDate:now toFormat:1];
+    self.monthLabel.text = self.monthLabel.text = [self.operations stringFromDate:now toFormat:1];
     NSDecimalNumber *totalMonthCredits;
-    totalMonthCredits = [util sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
-    self.creditLabel.text = [util stringByDecimalNumber: totalMonthCredits];
+    totalMonthCredits = [self.operations sumCreditsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.creditLabel.text = [self.operations stringByDecimalNumber: totalMonthCredits];
     
     NSDecimalNumber *totalMonthDebits;
-    totalMonthDebits = [util sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
-    self.debitLabel.text = [util stringByDecimalNumber: totalMonthDebits];
+    totalMonthDebits = [self.operations sumDebitsFromDate:self.currentMonth toDate:self.nextMonth];
+    self.debitLabel.text = [self.operations stringByDecimalNumber: totalMonthDebits];
     
     NSDecimalNumber *balance;
-    balance = [util calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
-    self.balanceLabel.text = [util stringByDecimalNumber: balance];
+    balance = [self.operations calculateBalanceFromDate:self.currentMonth toDate:self.nextMonth];
+    self.balanceLabel.text = [self.operations stringByDecimalNumber: balance];
     
     NSDecimalNumber *lastMonthBalance;
-    lastMonthBalance = [util  calculateBalanceFromDate:self.lastMonth toDate:self.currentMonth];
-    self.lastMonthBalanceLabel.text = [util stringByDecimalNumber: lastMonthBalance];
+    lastMonthBalance = [self.operations  calculateBalanceFromDate:self.lastMonth toDate:self.currentMonth];
+    self.lastMonthBalanceLabel.text = [self.operations stringByDecimalNumber: lastMonthBalance];
 }
 
 -(void)updateCurrentMonth

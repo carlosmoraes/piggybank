@@ -109,7 +109,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month, Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ADa-4p-ThB">
                                 <rect key="frame" x="20" y="94" width="280" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -246,9 +246,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="amountLabel" destination="Opp-Qa-NEg" id="Eb1-O5-YcM"/>
                                     <outlet property="dateLabel" destination="W0w-ET-ql9" id="L8r-OG-fUp"/>
                                     <outlet property="descriptionLabel" destination="bDS-zm-Htr" id="SL1-cl-Yj7"/>
+                                    <outlet property="valueLabel" destination="Opp-Qa-NEg" id="JH0-LQ-dzi"/>
                                     <segue destination="eo1-38-TsS" kind="push" identifier="edit" id="c6V-QZ-oSr"/>
                                 </connections>
                             </tableViewCell>

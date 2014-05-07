@@ -18,13 +18,23 @@
     NSManagedObjectContext *moc = [self.operations managedObjectContext];
     NSManagedObjectID *movementId = [self.movement objectID];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(objectID = %@)", movementId];
-    NSArray *result = [[self.operations mutableArrayOfMovementsByType:0] filteredArrayUsingPredicate:predicate];
+    
+    int type = 0;
+    
+    if ([self.movementType isEqualToString:@"Credit"])
+    {
+        type = 0;
+    } else {
+        type = 1;
+    }
+    
+    NSArray *result = [[self.operations mutableArrayOfMovementsByType:type] filteredArrayUsingPredicate:predicate];
     
     if (result.count == 1)
     {
         NSManagedObject *updatedMovement = [result objectAtIndex:0];
-        NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
-        [updatedMovement setValue:amount forKey:@"amount"];
+        NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithString:self.valueTextField.text];
+        [updatedMovement setValue:value forKey:@"value"];
         [updatedMovement setValue:self.descriptionTextField.text forKey:@"desc"];
 
         NSError *error = nil;
@@ -33,7 +43,6 @@
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"App" message:@"Sorry, the operation cannot be completed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
         }
-        
     }
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -59,9 +68,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    NSDecimalNumber *amount;
-    amount = [self.movement valueForKey:@"amount"];
-    self.valueTextField.text = [amount stringValue];
+    NSDecimalNumber *value;
+    value = [self.movement valueForKey:@"value"];
+    self.valueTextField.text = [value stringValue];
     self.descriptionTextField.text = [self.movement valueForKey:@"desc"];
 }
 
